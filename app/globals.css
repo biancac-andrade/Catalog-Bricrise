@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Suas cores oficiais da Bricrisê */
+  --background: #F2F2F0; /* Cream */
+  --foreground: #735E53; /* Brown */
+
+  --bicrise-sand: #D9C9BA;
+  --bicrise-clay: #BFA393;
+  --bicrise-dust: #8C6F65;
+  --bicrise-white: #F7F8F3;
 }
 
 @theme inline {
+  /* Mapeando as cores para usar como classes: ex bg-bicrise-brown */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-bicrise-sand: var(--bicrise-sand);
+  --color-bicrise-clay: var(--bicrise-clay);
+  --color-bicrise-dust: var(--bicrise-dust);
+  --color-bicrise-white: var(--bicrise-white);
+  --color-bicrise-brown: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Removido o Media Query de Dark Mode para manter a identidade visual clara */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-glacial);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilitário extra para títulos elegantes */
+h1, h2, h3 {
+  color: var(--foreground);
+  font-weight: 700;
 }

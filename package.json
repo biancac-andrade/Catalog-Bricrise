@@ -6,20 +6,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "studio": "node scripts/studio.mjs",
+    "studio:deploy": "node scripts/studio-deploy.mjs",
+    "import:sanity": "node scripts/import-catalog.mjs"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.1",
     "next": "16.2.2",
+    "next-sanity": "^12.2.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
+  },
+  "overrides": {
+    "vite": "7.3.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "sanity": "^5.20.0",
+    "styled-components": "^6.3.12",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

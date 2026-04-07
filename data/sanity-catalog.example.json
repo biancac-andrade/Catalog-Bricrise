@@ -1,0 +1,26 @@
+{
+  "themes": [
+    {
+      "title": "Copa",
+      "slug": "copa",
+      "groupKey": "pulseiras",
+      "groupTitle": "Pulseiras"
+    },
+    {
+      "title": "Variadas",
+      "slug": "variadas",
+      "groupKey": "pulseiras",
+      "groupTitle": "Pulseiras"
+    }
+  ],
+  "products": [
+    {
+      "title": "Exemplo — pulseira Copa",
+      "slug": "exemplo-copa",
+      "price": 22,
+      "themeSlug": "copa",
+      "image": "public/products/exemplo.jpg",
+      "available": true
+    }
+  ]
+}
