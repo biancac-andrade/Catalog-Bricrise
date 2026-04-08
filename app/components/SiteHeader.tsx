@@ -2,17 +2,16 @@ import Image from "next/image";
 
 import { whatsappLink } from "@/lib/whatsapp";
 
-/** Troque por `bicrise-logo.png` exportado com fundo transparente (PNG/SVG) quando tiver o arquivo. */
 const LOGO_SRC = "/images/bicrise-logo.png";
 
 const whatsappHref = whatsappLink(
-  "Oi Bianca! Vim pelo site da Bricrisê. Quero falar sobre as peças. 🧶",
+  "Oi Bricrise! Vim pelo site e quero saber mais sobre as pecas.",
 );
 
 export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-bicrise-sand/70 bg-[color-mix(in_srgb,var(--background)_96%,transparent)] backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between md:px-6">
+      <div className="mx-auto flex max-w-7xl flex-row items-center justify-between gap-4 px-4 py-4 md:px-6">
         <a
           href="#inicio"
           className="flex items-center gap-3 rounded-xl outline-offset-4 focus-visible:outline-2 focus-visible:outline-bicrise-dust"

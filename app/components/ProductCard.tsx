@@ -18,7 +18,7 @@ export default function ProductCard({
   priority = false,
 }: Readonly<ProductProps>) {
   const whatsappUrl = whatsappLink(
-    `Oi Bianca! Vi no site e amei a pulseira ${name}. Ela ainda está disponível? 🧶`,
+    `Oi Bricrise! Vi no site e tenho interesse na pulseira ${name}. Ela ainda esta disponivel?`,
   );
 
   return (

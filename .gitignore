@@ -37,13 +37,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# sanity (build local do Studio; regenera com `npm run studio` / `studio:deploy`)
-dist/
-.sanity/
-
-# JSON de import local — copiar de `data/sanity-catalog.example.json`
-data/sanity-catalog.json
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts

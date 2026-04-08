@@ -19,8 +19,7 @@
       "slug": "exemplo-copa",
       "price": 22,
       "themeSlug": "copa",
-      "image": "public/products/exemplo.jpg",
-      "available": true
+      "image": "public/images/bicrise-logo.png"
     }
   ]
 }

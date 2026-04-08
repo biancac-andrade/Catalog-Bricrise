@@ -1,24 +1,21 @@
 import { catalogSeed } from "@/data/catalog.seed";
 import type { CatalogData } from "@/lib/catalog/types";
-import { getSanityClient } from "@/lib/sanity/client";
-import { isSanityConfigured } from "@/lib/sanity/env";
-import { catalogQuery } from "@/lib/sanity/queries";
-
-import { mapSanityCatalog } from "./mapSanityCatalog";
+import { getContentfulClient } from "@/lib/contentful/client";
+import { isContentfulConfigured } from "@/lib/contentful/env";
+import { mapContentfulToCatalog } from "@/lib/catalog/mapContentfulCatalog";
 
 export async function fetchCatalog(): Promise<CatalogData> {
-  if (!isSanityConfigured()) {
+  if (!isContentfulConfigured()) {
     return catalogSeed;
   }
 
-  const client = getSanityClient();
+  const client = getContentfulClient();
   if (!client) {
     return catalogSeed;
   }
 
   try {
-    const raw = await client.fetch(catalogQuery);
-    const mapped = mapSanityCatalog(raw);
+    const mapped = await mapContentfulToCatalog(client);
     if (mapped.products.length === 0) {
       return catalogSeed;
     }
