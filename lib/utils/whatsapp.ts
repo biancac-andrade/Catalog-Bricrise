@@ -1,4 +1,3 @@
-/** Número com DDI (Brasil) sem + ou espaços — mesmo formato usado em wa.me */
 export const WHATSAPP_E164 = "5519981944880";
 
 export function whatsappLink(message?: string): string {

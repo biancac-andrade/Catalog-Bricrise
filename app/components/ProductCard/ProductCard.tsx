@@ -1,6 +1,6 @@
-import Image from "next/image";
+import { whatsappLink } from "@/lib/utils/whatsapp";
 
-import { whatsappLink } from "@/lib/whatsapp";
+import ProductCardImage from "./ProductCardImage";
 
 interface ProductProps {
   name: string;
@@ -27,23 +27,12 @@ export default function ProductCard({
         available ? "hover:shadow-md" : "opacity-90"
       }`}
     >
-      <div className="relative mb-2 aspect-square w-full overflow-hidden rounded-xl sm:mb-3">
-        <Image
-          src={imageUrl}
-          alt={name}
-          fill
-          className={`object-cover ${available ? "" : "grayscale"}`}
-          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 33vw, 25vw"
-          priority={priority}
-        />
-        {available === false ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-bicrise-brown/55">
-            <span className="rounded-lg bg-bicrise-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-bicrise-brown sm:text-sm">
-              Esgotado
-            </span>
-          </div>
-        ) : null}
-      </div>
+      <ProductCardImage
+        imageUrl={imageUrl}
+        name={name}
+        available={available}
+        priority={priority}
+      />
 
       <h3 className="mb-0.5 line-clamp-2 text-sm font-bold leading-snug text-bicrise-brown sm:text-base">
         {name}

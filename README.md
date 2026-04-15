@@ -1,6 +1,6 @@
 # Bricrisê — catálogo
 
-Site do catálogo da **Bricrisê** (pulseiras e peças em crochê/macramê). Lista produtos por tema, com link para WhatsApp e estado **disponível / esgotado**.
+Site do catálogo da **Bricrisê** (pulseiras e peças em macramê). Lista produtos por tema, com link para WhatsApp e estado **disponível / esgotado**.
 
 ## O que usa
 
@@ -149,13 +149,16 @@ A página revalida automaticamente a cada **2 minutos** — alterações publica
 
 | Caminho | Função |
 |---------|--------|
-| `app/` | Páginas e componentes React |
-| `app/components/CatalogView.tsx` | Grelha de produtos + filtros por tema |
-| `app/components/ProductCard.tsx` | Cartão de produto (foto, preço, WhatsApp, esgotado) |
-| `app/components/SiteHeader.tsx` | Cabeçalho com logo e botão WhatsApp |
-| `lib/contentful/` | Cliente Contentful e variáveis de ambiente |
-| `lib/catalog/` | `fetchCatalog` e mapeamento Contentful → tipos do site |
-| `lib/whatsapp.ts` | Geração de links `wa.me` |
+| `app/layout.tsx` | Entrada Next: estilos globais + reexport de metadata e layout |
+| `app/config/layout/` | Componente raiz (`RootLayout`, fontes Glacial Indifference) |
+| `app/config/metadata/` | Metadados SEO (título, descrição) |
+| `app/styles/globals.css` | Tailwind + tokens de cor da marca |
+| `app/page.tsx` | Rota `/`: página inicial + `revalidate` (ISR) |
+| `app/components/` | Componentes por pasta (`CatalogView/`, `SiteHeader/`, …) |
+| `app/components/CatalogView/CatalogView.types.ts` | Tipos do catálogo (tema, produto, dados); reexportados em `CatalogView/index.ts` |
+| `lib/utils/` | Funções utilitárias (ex.: links WhatsApp) |
+| `lib/contentful/` | Cliente, env, `fetchCatalog` (com fallback para seed) e mapeamento API → modelos do site |
+| `hooks/` | Custom hooks React (vazio até precisares de um) |
 | `data/catalog.seed.ts` | Dados de exemplo (fallback sem Contentful) |
 | `.env.example` | Modelo de variáveis de ambiente |
 

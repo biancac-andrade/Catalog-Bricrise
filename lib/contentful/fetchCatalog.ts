@@ -1,8 +1,8 @@
 import { catalogSeed } from "@/data/catalog.seed";
-import type { CatalogData } from "@/lib/catalog/types";
+import type { CatalogData } from "@/app/components/CatalogView";
 import { getContentfulClient } from "@/lib/contentful/client";
 import { isContentfulConfigured } from "@/lib/contentful/env";
-import { mapContentfulToCatalog } from "@/lib/catalog/mapContentfulCatalog";
+import { mapContentfulToCatalog } from "@/lib/contentful/mapContentfulCatalog";
 
 export async function fetchCatalog(): Promise<CatalogData> {
   if (!isContentfulConfigured()) {

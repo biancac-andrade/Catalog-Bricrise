@@ -4,7 +4,7 @@ import type {
   CatalogData,
   CatalogProduct,
   CatalogTheme,
-} from "@/lib/catalog/types";
+} from "@/app/components/CatalogView";
 import { getContentfulLocale } from "@/lib/contentful/env";
 
 const THEME_TYPE = "theme";

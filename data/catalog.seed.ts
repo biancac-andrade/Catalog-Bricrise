@@ -1,4 +1,4 @@
-import type { CatalogData, CatalogProduct, CatalogTheme } from "@/lib/catalog/types";
+import type { CatalogData, CatalogProduct, CatalogTheme } from "@/app/components/CatalogView";
 
 const pulseirasThemes: CatalogTheme[] = [
   {
@@ -54,7 +54,6 @@ const variadasProducts: CatalogProduct[] = [
   },
 ];
 
-/** Dados locais quando `NEXT_PUBLIC_SANITY_PROJECT_ID` não está definido ou o fetch falha. */
 export const catalogSeed: CatalogData = {
   themes: pulseirasThemes,
   products: [...copaProducts(), ...variadasProducts],

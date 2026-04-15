@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { whatsappLink } from "@/lib/whatsapp";
+import { whatsappLink } from "@/lib/utils/whatsapp";
 
 const LOGO_SRC = "/images/bicrise-logo.png";
 

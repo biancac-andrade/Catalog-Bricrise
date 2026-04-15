@@ -1,9 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  /* Suas cores oficiais da Bricrisê */
-  --background: #F2F2F0; /* Cream */
-  --foreground: #735E53; /* Brown */
+  --background: #F2F2F0;
+  --foreground: #735E53;
 
   --bicrise-sand: #D9C9BA;
   --bicrise-clay: #BFA393;
@@ -12,7 +11,6 @@
 }
 
 @theme inline {
-  /* Mapeando as cores para usar como classes: ex bg-bicrise-brown */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -23,8 +21,6 @@
   --color-bicrise-brown: var(--foreground);
 }
 
-/* Removido o Media Query de Dark Mode para manter a identidade visual clara */
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -33,7 +29,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utilitário extra para títulos elegantes */
 h1, h2, h3 {
   color: var(--foreground);
   font-weight: 700;
