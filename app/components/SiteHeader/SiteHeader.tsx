@@ -3,6 +3,7 @@ import Image from "next/image";
 import { whatsappLink } from "@/lib/utils/whatsapp";
 
 const LOGO_SRC = "/images/bicrise-logo.png";
+const WHATSAPP_ICON_SRC = "/images/whatsapp.svg";
 
 const whatsappHref = whatsappLink(
   "Oi Bricrise! Vim pelo site e quero saber mais sobre as pecas.",
@@ -44,7 +45,7 @@ export default function SiteHeader() {
             <span>WhatsApp</span>
             <span className="relative h-[18px] w-[18px] shrink-0" aria-hidden>
               <Image
-                src="/whatsapp.svg"
+                src={WHATSAPP_ICON_SRC}
                 alt=""
                 width={18}
                 height={18}
