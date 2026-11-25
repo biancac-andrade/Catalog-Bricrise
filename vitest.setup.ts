@@ -3,6 +3,14 @@ import type { ImgHTMLAttributes } from "react";
 import { createElement } from "react";
 import { vi } from "vitest";
 
+import {
+  installDialogElementDoubles,
+  installMatchMediaDouble,
+} from "@/test/browserDoubles";
+
+installDialogElementDoubles();
+installMatchMediaDouble();
+
 vi.mock("next/font/local", () => ({
   default: () => ({ variable: "--font-glacial" }),
 }));

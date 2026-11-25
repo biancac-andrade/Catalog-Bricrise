@@ -59,11 +59,11 @@ Geometria: `src/components/animations/wanderingYarnPath.ts` (viewBox, path `d`, 
 
 ## Testes e qualidade
 
-- `npm run test` — Vitest.
+- `npm run test` — Vitest (51 specs no escopo crítico v2).
+- `npm run test:coverage` — mesmo conjunto com threshold ≥95% nos módulos listados em `vitest.config.ts`.
 - `npm run lint` — ESLint (incl. regras React 19).
 - ISR: `revalidate = 120` nas páginas de catálogo.
 
 ## Dívida técnica conhecida
 
-- Testes de integração para `useYarnProgress` em páginas com e sem scroll.
-- Remover `YarnScrollRegion` se permanecer sem consumidores.
+- Cobrir regressões de autoplay vs scroll com E2E (opcional; hoje há testes Vitest em `src/hooks/useYarnProgress.test.tsx`).

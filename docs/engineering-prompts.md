@@ -78,4 +78,59 @@ Commits adicionais para o restante do tree (App Router pages, design-system, dep
 
 ---
 
+## Suíte de testes (>95% coverage) — Staff QA
+
+```text
+Atue como Staff QA Engineer e Lead Frontend Developer especialista em Jest, Vitest,
+React Testing Library e Next.js (App Router).
+
+Escreva e atualize a suíte completa de testes unitários e de integração da aplicação
+Bricrisê (Next.js + TypeScript + Tailwind + Framer Motion), garantindo cobertura
+rigorosa acima de 95% em Statements, Branches, Functions e Lines.
+
+Diretrizes: commits de teste sem comentários óbvios; BDD em inglês; mocks de
+usePathname/useRouter, framer-motion, ResizeObserver/matchMedia, localStorage.
+
+Escopo: useYarnProgress, ProductQuickView, ServicesCarousel, InteractivePriceMatrix,
+OrdersShippingNotice, isNavActive, LocaleContext.
+
+Validação: pnpm test -- --coverage (no repo: npm run test:coverage).
+```
+
+**Papel:** Staff QA Engineer + Lead Frontend (Vitest, React Testing Library, Next.js App Router).
+
+**Meta de cobertura (arquivos críticos):** Statements, Branches, Functions e Lines ≥ 95%.
+
+**Qualidade em testes:** sem comentários óbvios; BDD em inglês — `describe('ComponentOrHookName')` e `it('should … when …')`.
+
+**Mocks determinísticos:**
+
+- Next.js: `usePathname`, `useRouter`, `useSearchParams`
+- Framer Motion: render leve sem RAF/GPU; validar `variants` / props quando relevante
+- Browser: `ResizeObserver`, `matchMedia`, `resize`
+- `localStorage`: valor gravado, nulo, exceção em `getItem`/`setItem`
+- `<dialog>`: polyfill `showModal` / `close` em jsdom (`src/test/browserDoubles.ts`)
+
+**Escopo obrigatório:**
+
+| Área | Cenários |
+|------|----------|
+| `useYarnProgress` | reduced motion; scroll vs autoplay (slop 80px); cleanup em unmount; `pathname` |
+| `ProductQuickView` | `renderTrigger`; fechado; `onOpen` / `onClose` |
+| `ServicesCarousel` | slide 1; setas; loop; dots |
+| `InteractivePriceMatrix` + `OrdersShippingNotice` | abas Simples/Premium/Holográfico/Outros; frete BR + Sumaré |
+| `isNavActive` | `/`, aninhadas, `null`, divergentes |
+| `LocaleContext` | default `pt-BR`, `localStorage`, troca `en-US`, persistência |
+
+**Validação:**
+
+```bash
+npm run test:coverage
+# equivalente pnpm: pnpm test -- --coverage
+```
+
+Thresholds configurados em `vitest.config.ts` (include dos arquivos acima).
+
+---
+
 Índice geral: [README.md](./README.md) · fluxo IA: [ai-engineering-workflow.md](./ai-engineering-workflow.md).
