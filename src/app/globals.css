@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F8F3;
+  --foreground: #735E53;
+
+  --bicrise-sand: #D9C9BA;
+  --bicrise-clay: #BFA393;
+  --bicrise-dust: #8C6F65;
+  --bicrise-white: #F7F8F3;
+  --bicrise-surface: #F2F2F0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-bicrise-sand: var(--bicrise-sand);
+  --color-bicrise-clay: var(--bicrise-clay);
+  --color-bicrise-dust: var(--bicrise-dust);
+  --color-bicrise-white: var(--bicrise-white);
+  --color-bicrise-brown: var(--foreground);
+  --color-bicrise-surface: var(--bicrise-surface);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, button, a[role="tab"] {
+  font-family: var(--font-glacial), system-ui, sans-serif;
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+/* Legibilidade sobre o fio visível ao fundo — sem painel opaco */
+.yarn-readable h1,
+.yarn-readable h2,
+.yarn-readable h3,
+.yarn-readable p {
+  text-shadow:
+    0 0 12px rgba(247, 248, 243, 0.85),
+    0 1px 0 rgba(247, 248, 243, 0.9);
+}
