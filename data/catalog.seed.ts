@@ -1,4 +1,8 @@
-import type { CatalogData, CatalogProduct, CatalogTheme } from "@/app/components/CatalogView";
+import type {
+  CatalogData,
+  CatalogProduct,
+  CatalogTheme,
+} from "@/components/catalog/catalog.types";
 
 const pulseirasThemes: CatalogTheme[] = [
   {

@@ -1,5 +1,5 @@
 import { catalogSeed } from "@/data/catalog.seed";
-import type { CatalogData } from "@/app/components/CatalogView";
+import type { CatalogData } from "@/components/catalog/catalog.types";
 import { getContentfulClient } from "@/lib/contentful/client";
 import { isContentfulConfigured } from "@/lib/contentful/env";
 import { mapContentfulToCatalog } from "@/lib/contentful/mapContentfulCatalog";
