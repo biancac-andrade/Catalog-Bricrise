@@ -1,0 +1,21 @@
+export const YARN_VIEWBOX_WIDTH = 1000;
+export const YARN_VIEWBOX_HEIGHT = 1200;
+
+export const YARN_TIP_ORIGIN = { x: 120, y: 115 } as const;
+
+export const NEEDLE_EYE = { x: 738, y: 1075 } as const;
+
+export const NEEDLE_TRANSFORM = { x: 719, y: 1061, rotate: -22 } as const;
+
+export const WANDERING_YARN_PATH_D = `M 120 115
+  C 300 108, 540 102, 780 112
+  C 860 115, 905 88, 895 62
+  C 935 28, 982 55, 968 125
+  C 948 195, 780 268, 520 348
+  C 280 408, 55 448, 72 535
+  C 98 605, 295 578, 545 548
+  C 785 518, 895 595, 862 715
+  C 808 825, 540 885, 285 912
+  C 115 928, 58 978, 92 1032
+  C 145 1068, 395 1062, 635 1072
+  C 692 1074, 718 1075, 738 1075`;
