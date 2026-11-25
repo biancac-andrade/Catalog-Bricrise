@@ -18,21 +18,28 @@ Referência completa: [rules.md](./rules.md).
 
 ## Organização de PR e Conventional Commits
 
+**Objetivo:** PR limpa e atômica a partir da branch de refatoração, com histórico legível para review.
+
 ```text
 Atue como Tech Lead Frontend especialista em Git e Conventional Commits.
 
-Organize alterações pendentes em commits atômicos (não um único git add .).
-Mensagens em inglês: type(scope): imperative summary.
+Organize todas as alterações pendentes da branch de refatoração para submissão de uma nova Pull Request (PR) limpa e atômica.
 
-Roteiro típico:
-1. fix(catalog): ProductQuickView render-prop
-2. refactor(core): remove legacy app/
-3. refactor(animation): useYarnProgress
-4. refactor(orders): OrdersShippingNotice
-5. refactor(content): locale pruning
-6. docs(architecture): README + /docs
+### Diretrizes de Execução
+1. Verifique `git status` e agrupe os arquivos modificados em commits atômicos e lógicos.
+2. Não realize commit único massivo (`git add . && git commit -m "update"`).
+3. Todas as mensagens devem ser em inglês no padrão Conventional Commits (`type(scope): imperative summary`).
+4. Execute as checagens de validação (`pnpm lint` e `pnpm test` ou `pnpm build`) antes de finalizar.
 
-Validar lint e test antes de push.
+### Roteiro Sequencial de Comandos Git (v2)
+1. fix(catalog): resolve render-prop ref leak in ProductQuickView
+2. refactor(core): remove legacy root app directory in favor of src/app
+3. refactor(animation): extract useYarnProgress hook and streamline autoplay loop
+4. refactor(orders): extract OrdersShippingNotice and streamline price matrix
+5. refactor(content): prune dead locale keys and enforce stable list identifiers
+6. docs(architecture): update version history to v2.0 and document design tokens
+
+Commits adicionais para o restante do tree (App Router pages, design-system, deps, brand assets) — mesmas regras, escopos novos: `feat(app)`, `feat(ui)`, `chore(deps)`, `assets(brand)`.
 ```
 
 ---
