@@ -1,0 +1,16 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 1000"
+  preserveAspectRatio="none"
+  fill="none"
+  aria-hidden="true"
+>
+  <path
+    stroke="#735E53"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    d="M 50 0 C 65 100, 35 200, 50 300 C 58 350, 75 365, 75 385 C 75 405, 55 410, 45 395 C 35 380, 50 360, 55 420 C 65 520, 30 600, 50 680 C 60 720, 75 735, 70 755 C 65 775, 45 775, 40 760 C 35 745, 50 730, 52 790 C 55 860, 40 930, 50 1000"
+  />
+</svg>
