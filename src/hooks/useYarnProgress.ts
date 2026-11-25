@@ -50,7 +50,12 @@ export function useYarnProgress() {
 
   useEffect(() => {
     const main = mainRef?.current;
-    if (!main || reduceMotion) {
+    if (!main) {
+      scrollableRef.current = false;
+      progress.set(1);
+      return;
+    }
+    if (reduceMotion) {
       progress.set(1);
       return;
     }

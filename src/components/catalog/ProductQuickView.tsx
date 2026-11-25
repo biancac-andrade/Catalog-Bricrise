@@ -39,15 +39,15 @@ export default function ProductQuickView({
   return (
     <>
       {renderTrigger({ onOpen: handleOpen })}
-      {isOpen ? (
-        <dialog
-          ref={dialogRef}
-          className="m-auto max-h-[90vh] w-[min(92vw,40rem)] max-w-none rounded-2xl border border-[#D9C9BA] bg-[#F7F8F3] p-3 shadow-2xl backdrop:bg-[#735E53]/45"
-          onClose={handleClose}
-          onClick={(event) => {
-            if (event.target === dialogRef.current) handleClose();
-          }}
-        >
+      <dialog
+        ref={dialogRef}
+        className="m-auto max-h-[90vh] w-[min(92vw,40rem)] max-w-none rounded-2xl border border-[#D9C9BA] bg-[#F7F8F3] p-3 shadow-2xl backdrop:bg-[#735E53]/45"
+        onClose={handleClose}
+        onClick={(event) => {
+          if (event.target === dialogRef.current) handleClose();
+        }}
+      >
+        {isOpen ? (
           <div className="flex max-h-[min(85vh,40rem)] flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
               <p
@@ -74,8 +74,8 @@ export default function ProductQuickView({
               />
             </div>
           </div>
-        </dialog>
-      ) : null}
+        ) : null}
+      </dialog>
     </>
   );
 }
