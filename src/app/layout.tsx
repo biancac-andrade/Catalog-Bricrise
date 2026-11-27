@@ -3,8 +3,9 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
-import ViewportShell from "@/components/layout/ViewportShell";
 import Providers from "@/components/layout/Providers";
+import SiteAnalytics from "@/components/layout/SiteAnalytics";
+import ViewportShell from "@/components/layout/ViewportShell";
 
 export { metadata } from "./metadata";
 
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Providers>
           <ViewportShell>{children}</ViewportShell>
         </Providers>
+        <SiteAnalytics />
       </body>
     </html>
   );

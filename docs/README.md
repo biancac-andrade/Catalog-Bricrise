@@ -12,6 +12,7 @@
 | [ai-engineering-workflow.md](./ai-engineering-workflow.md) | Engenharia assistida por IA e governança |
 | [rules.md](./rules.md) | Code review: TypeScript, ESLint, a11y, código limpo |
 | [engineering-prompts.md](./engineering-prompts.md) | Registro de prompts de IA no v2 |
+| [analytics.md](./analytics.md) | Vercel Web Analytics — ativação, métricas e rotas |
 
 ## v2.1 — redação editorial e interações (nov/2025)
 
