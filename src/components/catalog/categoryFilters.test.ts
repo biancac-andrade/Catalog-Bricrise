@@ -57,8 +57,14 @@ describe("catalog filters", () => {
     },
   ];
 
+  const labels = {
+    all: "Todos",
+    atelie: "Ateliê Criativa",
+    papelaria: "Papelaria Criativa",
+  };
+
   it("should only show group tabs that have products", () => {
-    const pills = getVisibleCatalogPills(products);
+    const pills = getVisibleCatalogPills(products, labels);
     expect(pills.map((p) => p.id)).toEqual(["all", "atelie", "papelaria"]);
   });
 

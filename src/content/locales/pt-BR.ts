@@ -69,6 +69,23 @@ export const ptBR = {
       subtitle:
         "Busque por nome, filtre por linha e encomende com mensagem já personalizada.",
     },
+    filters: {
+      allGroups: "Todos",
+      allThemes: "Todos os temas",
+      themesHeading: "Temas",
+      groups: {
+        atelie: "Ateliê Criativa",
+        papelaria: "Papelaria Criativa",
+      },
+      searchSrOnly: "Buscar no catálogo",
+      searchPlaceholder: "Buscar item...",
+      ariaCategories: "Filtrar catálogo",
+      ariaThemes: "Filtrar por tema",
+      emptyResults:
+        'Nenhum produto neste filtro. Tente "Todos" ou peça uma encomenda personalizada.',
+      productSingular: "produto",
+      productPlural: "produtos",
+    },
   },
   cart: {
     headerDisabledTitle: "Carrinho vazio — adicione itens no catálogo",

@@ -68,6 +68,23 @@ export const enUS = {
       title: "Full catalog",
       subtitle: "Search by name, filter by line, and order with a pre-filled message.",
     },
+    filters: {
+      allGroups: "All",
+      allThemes: "All themes",
+      themesHeading: "Themes",
+      groups: {
+        atelie: "Creative Studio",
+        papelaria: "Creative Stationery",
+      },
+      searchSrOnly: "Search catalog",
+      searchPlaceholder: "Search item...",
+      ariaCategories: "Filter catalog",
+      ariaThemes: "Filter by theme",
+      emptyResults:
+        'No products in this filter. Try "All" or request a custom order.',
+      productSingular: "product",
+      productPlural: "products",
+    },
   },
   cart: {
     headerDisabledTitle: "Cart empty — add items from the catalog",

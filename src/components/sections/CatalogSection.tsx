@@ -6,7 +6,6 @@ import CategoryFilter from "@/components/catalog/CategoryFilter";
 import ProductCard from "@/components/catalog/ProductCard";
 import type { CatalogProduct, CatalogTheme } from "@/components/catalog/catalog.types";
 import {
-  ALL_CATALOG_PILLS,
   filterCatalogProducts,
   getThemesForCatalogGroup,
   getVisibleCatalogPills,
@@ -27,10 +26,20 @@ export default function CatalogSection({
   themes,
 }: Readonly<Props>) {
   const { copy } = useLocale();
+  const filterCopy = copy.catalog.filters;
+
+  const groupLabels = useMemo(
+    () => ({
+      all: filterCopy.allGroups,
+      atelie: filterCopy.groups.atelie,
+      papelaria: filterCopy.groups.papelaria,
+    }),
+    [filterCopy],
+  );
 
   const visiblePills = useMemo(
-    () => getVisibleCatalogPills(products),
-    [products],
+    () => getVisibleCatalogPills(products, groupLabels),
+    [products, groupLabels],
   );
 
   const [category, setCategory] = useState<CatalogCategoryFilter>("all");
@@ -53,7 +62,7 @@ export default function CatalogSection({
   );
 
   const activeLabel =
-    ALL_CATALOG_PILLS.find((p) => p.id === category)?.label ?? "Todos";
+    visiblePills.find((p) => p.id === category)?.label ?? filterCopy.allGroups;
 
   const handleCategoryChange = (next: CatalogCategoryFilter) => {
     setCategory(next);
@@ -76,13 +85,14 @@ export default function CatalogSection({
               pills={visiblePills}
               value={category}
               onChange={handleCategoryChange}
+              ariaLabel={filterCopy.ariaCategories}
             />
 
             <label
               className={`relative block w-full shrink-0 sm:w-52 ${brandClasses.body}`}
               htmlFor="catalog-search"
             >
-              <span className="sr-only">Buscar no catálogo</span>
+              <span className="sr-only">{filterCopy.searchSrOnly}</span>
               <span
                 aria-hidden
                 className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#BFA393]"
@@ -105,7 +115,7 @@ export default function CatalogSection({
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar item..."
+                placeholder={filterCopy.searchPlaceholder}
                 className="w-full rounded-full border border-[#D9C9BA] bg-[#FAFAF8] py-2 pl-9 pr-3 text-sm text-[#735E53] outline-offset-2 placeholder:text-[#BFA393] focus-visible:border-[#8C6F65] focus-visible:outline-2 focus-visible:outline-[#8C6F65]/40"
               />
             </label>
@@ -116,6 +126,9 @@ export default function CatalogSection({
               themes={themeOptions}
               value={themeSlug}
               onChange={setThemeSlug}
+              themesHeading={filterCopy.themesHeading}
+              allThemesLabel={filterCopy.allThemes}
+              ariaLabel={filterCopy.ariaThemes}
             />
           ) : null}
 
@@ -125,7 +138,9 @@ export default function CatalogSection({
               ? ` · ${themeOptions.find((t) => t.theme.slug === themeSlug)?.theme.title ?? themeSlug}`
               : ""}{" "}
             · {visible.length}{" "}
-            {visible.length === 1 ? "produto" : "produtos"}
+            {visible.length === 1
+              ? filterCopy.productSingular
+              : filterCopy.productPlural}
           </p>
         </div>
 
@@ -133,8 +148,7 @@ export default function CatalogSection({
           <p
             className={`py-12 text-center text-[#8C6F65] ${brandClasses.body}`}
           >
-            Nenhum produto neste filtro. Tente &quot;Todos&quot; ou peça uma
-            encomenda personalizada.
+            {filterCopy.emptyResults}
           </p>
         ) : (
           <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">

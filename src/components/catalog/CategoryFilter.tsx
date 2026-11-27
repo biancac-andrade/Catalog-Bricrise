@@ -9,18 +9,20 @@ type Props = {
   pills: Pill[];
   value: CatalogCategoryFilter;
   onChange: (next: CatalogCategoryFilter) => void;
+  ariaLabel: string;
 };
 
 export default function CategoryFilter({
   pills,
   value,
   onChange,
+  ariaLabel,
 }: Readonly<Props>) {
   return (
     <div
       className="inline-flex max-w-full flex-wrap gap-1 rounded-full bg-[#EAE5DE]/60 p-1"
       role="tablist"
-      aria-label="Filtrar catálogo"
+      aria-label={ariaLabel}
     >
       {pills.map((pill) => {
         const active = value === pill.id;

@@ -6,22 +6,18 @@ import {
 
 export type CatalogCategoryFilter = "all" | CatalogGroupKey;
 
-export const CATALOG_GROUP_LABELS: Record<CatalogGroupKey, string> = {
-  atelie: "Ateliê Criativa",
-  papelaria: "Papelaria Criativa",
+export type CatalogGroupFilterLabels = {
+  all: string;
+  atelie: string;
+  papelaria: string;
 };
-
-export const ALL_CATALOG_PILLS: { id: CatalogCategoryFilter; label: string }[] = [
-  { id: "all", label: "Todos" },
-  { id: "atelie", label: CATALOG_GROUP_LABELS.atelie },
-  { id: "papelaria", label: CATALOG_GROUP_LABELS.papelaria },
-];
 
 export function getVisibleCatalogPills(
   products: CatalogProduct[],
+  labels: CatalogGroupFilterLabels,
 ): { id: CatalogCategoryFilter; label: string }[] {
   const pills: { id: CatalogCategoryFilter; label: string }[] = [
-    { id: "all", label: "Todos" },
+    { id: "all", label: labels.all },
   ];
 
   const hasAtelie = products.some(
@@ -32,10 +28,10 @@ export function getVisibleCatalogPills(
   );
 
   if (hasAtelie) {
-    pills.push({ id: "atelie", label: CATALOG_GROUP_LABELS.atelie });
+    pills.push({ id: "atelie", label: labels.atelie });
   }
   if (hasPapelaria) {
-    pills.push({ id: "papelaria", label: CATALOG_GROUP_LABELS.papelaria });
+    pills.push({ id: "papelaria", label: labels.papelaria });
   }
 
   return pills;

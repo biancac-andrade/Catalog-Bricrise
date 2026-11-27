@@ -7,12 +7,18 @@ type Props = {
   themes: ThemeWithCount[];
   value: string | null;
   onChange: (themeSlug: string | null) => void;
+  themesHeading: string;
+  allThemesLabel: string;
+  ariaLabel: string;
 };
 
 export default function ThemeFilter({
   themes,
   value,
   onChange,
+  themesHeading,
+  allThemesLabel,
+  ariaLabel,
 }: Readonly<Props>) {
   if (themes.length === 0) return null;
 
@@ -21,12 +27,12 @@ export default function ThemeFilter({
       <p
         className={`text-[0.65rem] font-semibold uppercase tracking-wider text-[#BFA393] ${brandClasses.heading}`}
       >
-        Temas
+        {themesHeading}
       </p>
       <div
         className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         role="tablist"
-        aria-label="Filtrar por tema"
+        aria-label={ariaLabel}
       >
         <button
           type="button"
@@ -39,7 +45,7 @@ export default function ThemeFilter({
               : "border-[#D9C9BA] bg-white/60 font-semibold text-[#735E53] hover:border-[#C4B5A8] hover:bg-[#F2F2F0]"
           }`}
         >
-          Todos os temas
+          {allThemesLabel}
         </button>
         {themes.map(({ theme, productCount }) => {
           const active = value === theme.slug;
