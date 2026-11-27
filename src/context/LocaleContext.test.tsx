@@ -42,6 +42,16 @@ describe("LocaleContext", () => {
     expect(screen.getByTestId("about-kicker")).toHaveTextContent("Sobre");
   });
 
+  it("should fall back to pt-BR when stored locale is unknown", () => {
+    window.localStorage.setItem(STORAGE_KEY, "fr-FR");
+    render(
+      <LocaleProvider>
+        <LocaleProbe />
+      </LocaleProvider>,
+    );
+    expect(screen.getByTestId("locale-id")).toHaveTextContent("pt-BR");
+  });
+
   it("should hydrate locale from stored en-US preference", () => {
     window.localStorage.setItem(STORAGE_KEY, "en-US");
     render(
