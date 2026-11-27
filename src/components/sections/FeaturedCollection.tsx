@@ -43,6 +43,7 @@ export default function FeaturedCollection({ products }: Readonly<Props>) {
           {featured.map((p, index) => (
             <li key={p._id} className="relative z-20">
               <ProductCard
+                productId={p._id}
                 name={p.title}
                 price={p.price}
                 imageUrl={p.imageUrl}

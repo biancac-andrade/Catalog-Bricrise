@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import { catalogSeed } from "@/data/catalog.seed";
+import { CartProvider } from "@/context/CartContext";
 import { LocaleProvider } from "@/context/LocaleContext";
 
 import CatalogSection from "./CatalogSection";
@@ -10,10 +11,12 @@ import CatalogSection from "./CatalogSection";
 function setup() {
   const result = render(
     <LocaleProvider>
-      <CatalogSection
-        themes={catalogSeed.themes}
-        products={catalogSeed.products}
-      />
+      <CartProvider>
+        <CatalogSection
+          themes={catalogSeed.themes}
+          products={catalogSeed.products}
+        />
+      </CartProvider>
     </LocaleProvider>,
   );
   return within(result.container);
@@ -28,10 +31,14 @@ describe("CatalogSection", () => {
     expect(root.getAllByRole("listitem").length).toBe(catalogSeed.products.length);
   });
 
-  it("filtra por Ateliê Macramê", async () => {
+  it("filtra por Ateliê Criativa e mostra submenu de temas", async () => {
     const user = userEvent.setup();
     const root = setup();
-    await user.click(root.getByRole("tab", { name: /Ateliê Macramê/i }));
+    await user.click(root.getByRole("tab", { name: /Ateliê Criativa/i }));
+    expect(
+      root.getByRole("tab", { name: /Todos os temas/i }),
+    ).toBeInTheDocument();
+    expect(root.getByRole("tab", { name: /Copa/i })).toBeInTheDocument();
     expect(root.getAllByRole("listitem").length).toBe(catalogSeed.products.length);
   });
 });

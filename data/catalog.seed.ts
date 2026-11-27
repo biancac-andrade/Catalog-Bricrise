@@ -4,6 +4,21 @@ import type {
   CatalogTheme,
 } from "@/components/catalog/catalog.types";
 
+export const catalogGroups: CatalogData["groups"] = [
+  {
+    _id: "seed-group-atelie",
+    slug: "atelie",
+    title: "Ateliê Criativa",
+    key: "atelie",
+  },
+  {
+    _id: "seed-group-papelaria",
+    slug: "papelaria",
+    title: "Papelaria Criativa",
+    key: "papelaria",
+  },
+];
+
 const pulseirasThemes: CatalogTheme[] = [
   {
     _id: "theme-copa",
@@ -11,6 +26,7 @@ const pulseirasThemes: CatalogTheme[] = [
     title: "Copa",
     groupKey: "pulseiras",
     groupTitle: "Pulseiras",
+    catalogGroupKey: "atelie",
   },
   {
     _id: "theme-variadas",
@@ -18,6 +34,7 @@ const pulseirasThemes: CatalogTheme[] = [
     title: "Variadas",
     groupKey: "pulseiras",
     groupTitle: "Pulseiras",
+    catalogGroupKey: "atelie",
   },
 ];
 
@@ -36,6 +53,7 @@ function copaProducts(): CatalogProduct[] {
       title: "Copa",
       groupKey: "pulseiras",
       groupTitle: "Pulseiras",
+      catalogGroupKey: "atelie",
     },
   }));
 }
@@ -54,11 +72,13 @@ const variadasProducts: CatalogProduct[] = [
       title: "Variadas",
       groupKey: "pulseiras",
       groupTitle: "Pulseiras",
+      catalogGroupKey: "atelie",
     },
   },
 ];
 
 export const catalogSeed: CatalogData = {
+  groups: catalogGroups,
   themes: pulseirasThemes,
   products: [...copaProducts(), ...variadasProducts],
 };

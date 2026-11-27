@@ -6,10 +6,13 @@ import CategoryFilter from "@/components/catalog/CategoryFilter";
 import ProductCard from "@/components/catalog/ProductCard";
 import type { CatalogProduct, CatalogTheme } from "@/components/catalog/catalog.types";
 import {
-  CATALOG_PILL_OPTIONS,
-  filterProductsByCategory,
+  ALL_CATALOG_PILLS,
+  filterCatalogProducts,
+  getThemesForCatalogGroup,
+  getVisibleCatalogPills,
   type CatalogCategoryFilter,
 } from "@/components/catalog/categoryFilters";
+import ThemeFilter from "@/components/catalog/ThemeFilter";
 import PageHeader from "@/components/ui/PageHeader";
 import { useLocale } from "@/context/LocaleContext";
 import { brandClasses } from "@/design-system/brandTokens";
@@ -21,23 +24,41 @@ type Props = {
 
 export default function CatalogSection({
   products,
-  themes: _themes,
+  themes,
 }: Readonly<Props>) {
-  void _themes;
   const { copy } = useLocale();
 
+  const visiblePills = useMemo(
+    () => getVisibleCatalogPills(products),
+    [products],
+  );
+
   const [category, setCategory] = useState<CatalogCategoryFilter>("all");
+  const [themeSlug, setThemeSlug] = useState<string | null>(null);
   const [query, setQuery] = useState("");
 
-  const visible = useMemo(() => {
-    const byCategory = filterProductsByCategory(products, category);
-    const q = query.trim().toLowerCase();
-    if (!q) return byCategory;
-    return byCategory.filter((p) => p.title.toLowerCase().includes(q));
-  }, [products, category, query]);
+  const themeOptions = useMemo(() => {
+    if (category === "all") return [];
+    return getThemesForCatalogGroup(themes, products, category);
+  }, [category, themes, products]);
+
+  const visible = useMemo(
+    () =>
+      filterCatalogProducts(products, {
+        category,
+        themeSlug,
+        query,
+      }),
+    [products, category, themeSlug, query],
+  );
 
   const activeLabel =
-    CATALOG_PILL_OPTIONS.find((p) => p.id === category)?.label ?? "Todos";
+    ALL_CATALOG_PILLS.find((p) => p.id === category)?.label ?? "Todos";
+
+  const handleCategoryChange = (next: CatalogCategoryFilter) => {
+    setCategory(next);
+    setThemeSlug(null);
+  };
 
   return (
     <section id="catalogo" className="relative z-20 px-4 md:px-6">
@@ -49,26 +70,61 @@ export default function CatalogSection({
           titleId="catalogo-heading"
         />
 
-        <div className="mb-10">
-          <label
-            className={`mb-4 block ${brandClasses.body}`}
-            htmlFor="catalog-search"
-          >
-            <span className="sr-only">Buscar no catálogo</span>
-            <input
-              id="catalog-search"
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar por nome do item..."
-              className="w-full max-w-md rounded-xl border border-[#D9C9BA] bg-[#F2F2F0]/90 px-4 py-2.5 text-sm text-[#735E53] shadow-sm outline-offset-2 backdrop-blur-sm placeholder:text-[#BFA393] focus-visible:outline-2 focus-visible:outline-[#8C6F65]"
+        <div className="mb-10 space-y-4">
+          <div className="flex flex-col gap-3 border-b border-[#E5DDD4] pb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+            <CategoryFilter
+              pills={visiblePills}
+              value={category}
+              onChange={handleCategoryChange}
             />
-          </label>
 
-          <CategoryFilter value={category} onChange={setCategory} />
+            <label
+              className={`relative block w-full shrink-0 sm:w-52 ${brandClasses.body}`}
+              htmlFor="catalog-search"
+            >
+              <span className="sr-only">Buscar no catálogo</span>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#BFA393]"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+              </span>
+              <input
+                id="catalog-search"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar item..."
+                className="w-full rounded-full border border-[#D9C9BA] bg-[#FAFAF8] py-2 pl-9 pr-3 text-sm text-[#735E53] outline-offset-2 placeholder:text-[#BFA393] focus-visible:border-[#8C6F65] focus-visible:outline-2 focus-visible:outline-[#8C6F65]/40"
+              />
+            </label>
+          </div>
 
-          <p className={`mt-4 text-xs text-[#BFA393] ${brandClasses.body}`}>
-            {activeLabel} · {visible.length}{" "}
+          {category !== "all" ? (
+            <ThemeFilter
+              themes={themeOptions}
+              value={themeSlug}
+              onChange={setThemeSlug}
+            />
+          ) : null}
+
+          <p className={`text-xs text-[#BFA393] ${brandClasses.body}`}>
+            {activeLabel}
+            {themeSlug
+              ? ` · ${themeOptions.find((t) => t.theme.slug === themeSlug)?.theme.title ?? themeSlug}`
+              : ""}{" "}
+            · {visible.length}{" "}
             {visible.length === 1 ? "produto" : "produtos"}
           </p>
         </div>
@@ -85,6 +141,7 @@ export default function CatalogSection({
             {visible.map((p, index) => (
               <li key={p._id} className="relative z-20">
                 <ProductCard
+                  productId={p._id}
                   name={p.title}
                   price={p.price}
                   imageUrl={p.imageUrl}
