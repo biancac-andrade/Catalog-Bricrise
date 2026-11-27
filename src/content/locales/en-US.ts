@@ -9,6 +9,15 @@ export const enUS = {
     mobileMenu: {
       sectionLabel: "Pages",
       home: "Home",
+      utilitiesLabel: "Quick links",
+      language: "Language",
+      cart: "Cart",
+      whatsapp: "WhatsApp",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      close: "Close",
+      cartBadgeSuffix: "items in cart",
+      cartBadgeSuffixOne: "item in cart",
     },
   },
   footer: {

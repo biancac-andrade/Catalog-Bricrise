@@ -25,7 +25,7 @@ export default function WanderingYarnScroll({ className = "" }: Readonly<Props>)
   return (
     <div
       aria-hidden
-      className={`pointer-events-none fixed inset-0 z-10 h-full w-full overflow-hidden transform-gpu will-change-transform ${className}`}
+      className={`pointer-events-none fixed inset-0 z-10 h-full w-full overflow-visible transform-gpu will-change-transform ${className}`}
     >
       <motion.div
         style={{
@@ -36,7 +36,7 @@ export default function WanderingYarnScroll({ className = "" }: Readonly<Props>)
           left: `${(YARN_TIP_ORIGIN.x / YARN_VIEWBOX_WIDTH) * 100}%`,
           top: `calc(${(YARN_TIP_ORIGIN.y / YARN_VIEWBOX_HEIGHT) * 100}% - 2.75rem)`,
         }}
-        className="absolute z-[2] h-[3.25rem] w-[3.25rem] -translate-x-[38%] transform-gpu will-change-transform sm:h-16 sm:w-16"
+        className="absolute z-[2] h-[3.25rem] w-[3.25rem] -translate-x-[38%] translate-y-6 transform-gpu will-change-transform sm:translate-y-0 sm:h-16 sm:w-16"
       >
         <svg
           viewBox="0 0 100 100"

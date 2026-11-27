@@ -30,7 +30,7 @@ describe("Header", () => {
   it("oferece controle do menu hambúrguer", () => {
     renderHeader();
     expect(
-      screen.getByRole("button", { name: /Abrir menu/i }),
+      screen.getByRole("button", { name: /^Abrir menu$/i }),
     ).toBeInTheDocument();
   });
 

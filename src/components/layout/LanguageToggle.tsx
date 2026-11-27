@@ -33,7 +33,13 @@ function ChevronDown({ open }: { open: boolean }) {
   );
 }
 
-export default function LanguageToggle() {
+type Props = {
+  presentation?: "header" | "drawer";
+};
+
+export default function LanguageToggle({
+  presentation = "header",
+}: Readonly<Props>) {
   const { locale, setLocale } = useLocale();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -68,6 +74,35 @@ export default function LanguageToggle() {
     setOpen(false);
   };
 
+  if (presentation === "drawer") {
+    return (
+      <div
+        role="group"
+        aria-label="Selecionar idioma / Select language"
+        className="flex gap-2"
+      >
+        {OPTIONS.map((opt) => {
+          const selected = opt.id === locale;
+          return (
+            <button
+              key={opt.id}
+              type="button"
+              onClick={() => pick(opt.id)}
+              aria-pressed={selected}
+              className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-semibold transition ${brandClasses.heading} ${
+                selected
+                  ? "border-[#8C6F65] bg-[#EAE5DE] text-[#735E53]"
+                  : "border-[#D9C9BA] bg-white/70 text-[#735E53]/85 active:bg-[#F2F2F0] [@media(hover:hover)]:hover:border-[#8C6F65]/60"
+              }`}
+            >
+              {opt.menuLabel}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div ref={rootRef} className="relative w-auto shrink-0">
       <button
@@ -77,7 +112,7 @@ export default function LanguageToggle() {
         aria-controls={listboxId}
         aria-label="Selecionar idioma / Select language"
         onClick={() => setOpen((v) => !v)}
-        className={`inline-flex w-auto items-center gap-1.5 rounded-full border border-[#D9C9BA] bg-[#F7F8F3] px-2.5 py-1 text-xs font-medium text-[#735E53] transition-colors hover:border-[#8C6F65] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8C6F65] ${brandClasses.heading}`}
+        className={`inline-flex w-auto items-center gap-1.5 rounded-full border border-[#D9C9BA] bg-[#F7F8F3] px-2.5 py-1 text-xs font-medium text-[#735E53] transition-colors [@media(hover:hover)]:hover:border-[#8C6F65] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8C6F65] ${brandClasses.heading}`}
       >
         <span className="whitespace-nowrap leading-none">
           {current.short} {current.flag}
@@ -104,7 +139,7 @@ export default function LanguageToggle() {
                   className={`flex w-full items-center gap-2 rounded-xl px-3 py-1.5 text-left text-xs text-[#735E53] transition-colors ${brandClasses.heading} ${
                     selected
                       ? "bg-[#EAE5DE] font-semibold"
-                      : "hover:bg-[#EAE5DE]"
+                      : "active:bg-[#EAE5DE] [@media(hover:hover)]:hover:bg-[#EAE5DE]"
                   }`}
                 >
                   {opt.menuLabel}

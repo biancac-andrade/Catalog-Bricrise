@@ -93,9 +93,9 @@ export default function ProductCard({
           R$ {price.toFixed(2)}
         </p>
 
-        <div className="mt-auto flex w-full items-stretch gap-1.5">
+        <div className="mt-auto flex w-full flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-1.5">
           <div
-            className="flex h-10 min-w-0 flex-[5] items-center rounded-xl border border-[#D9C9BA]/60 bg-[#F7F8F3] px-0.5"
+            className="flex h-11 w-full min-w-0 items-center rounded-xl border border-[#D9C9BA]/60 bg-[#F7F8F3] px-1 sm:h-10 sm:flex-[5] sm:px-0.5"
             role="group"
             aria-label={`Quantidade: ${name}`}
           >
@@ -103,7 +103,7 @@ export default function ProductCard({
               type="button"
               onClick={() => setQty((n) => Math.max(1, n - 1))}
               disabled={qty <= 1}
-              className="flex h-9 w-10 shrink-0 items-center justify-center rounded-lg text-[#735E53] transition enabled:hover:bg-[#EAE5DE]/70 disabled:opacity-30"
+              className="flex h-10 w-12 shrink-0 items-center justify-center rounded-lg text-[#735E53] transition enabled:hover:bg-[#EAE5DE]/70 disabled:opacity-30 sm:h-9 sm:w-10"
               aria-label={t.decreaseQty}
             >
               <span
@@ -122,7 +122,7 @@ export default function ProductCard({
               type="button"
               onClick={() => setQty((n) => Math.min(99, n + 1))}
               disabled={qty >= 99}
-              className="flex h-9 w-10 shrink-0 items-center justify-center rounded-lg text-[#735E53] transition enabled:hover:bg-[#EAE5DE]/70 disabled:opacity-30"
+              className="flex h-10 w-12 shrink-0 items-center justify-center rounded-lg text-[#735E53] transition enabled:hover:bg-[#EAE5DE]/70 disabled:opacity-30 sm:h-9 sm:w-10"
               aria-label={t.increaseQty}
             >
               <span
@@ -137,7 +137,7 @@ export default function ProductCard({
           <button
             type="button"
             onClick={handleAdd}
-            className={`flex h-10 min-w-0 flex-[4] items-center justify-center rounded-xl border px-2 text-[0.6875rem] font-semibold leading-tight transition sm:text-xs ${brandClasses.heading} ${
+            className={`flex h-11 w-full min-w-0 items-center justify-center rounded-xl border px-3 text-sm font-semibold leading-tight transition sm:h-10 sm:flex-[4] sm:px-2 sm:text-xs ${brandClasses.heading} ${
               justAdded
                 ? "border-[#4A6B56] bg-[#EAE5DE]/50 text-[#4A6B56]"
                 : "border-[#D9C9BA] bg-white text-[#735E53] hover:border-[#8C6F65]/70 hover:bg-[#F7F8F3]"

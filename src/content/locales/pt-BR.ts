@@ -9,6 +9,15 @@ export const ptBR = {
     mobileMenu: {
       sectionLabel: "Páginas",
       home: "Início",
+      utilitiesLabel: "Atalhos",
+      language: "Idioma",
+      cart: "Carrinho",
+      whatsapp: "WhatsApp",
+      openMenu: "Abrir menu",
+      closeMenu: "Fechar menu",
+      close: "Fechar",
+      cartBadgeSuffix: "itens no carrinho",
+      cartBadgeSuffixOne: "item no carrinho",
     },
   },
   footer: {

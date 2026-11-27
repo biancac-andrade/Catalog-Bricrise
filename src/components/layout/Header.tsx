@@ -12,6 +12,7 @@ import MobileMenuDrawer from "@/components/layout/MobileMenuDrawer";
 import WhatsAppIconLink from "@/components/ui/WhatsAppIconLink";
 import { brandLogos } from "@/assets/brand/logos";
 import { HEADER_WHATSAPP_MESSAGE } from "@/components/layout/navConfig";
+import { useCart } from "@/context/CartContext";
 import { useLocale } from "@/context/LocaleContext";
 import { brandClasses } from "@/design-system/brandTokens";
 import { isNavActive } from "@/lib/navigation/isNavActive";
@@ -19,16 +20,42 @@ import { isNavActive } from "@/lib/navigation/isNavActive";
 type HamburgerProps = {
   open: boolean;
   onToggle: () => void;
+  cartItemCount: number;
+  labels: {
+    openMenu: string;
+    closeMenu: string;
+    cartBadgeSuffix: string;
+    cartBadgeSuffixOne: string;
+  };
 };
 
-function HamburgerButton({ open, onToggle }: Readonly<HamburgerProps>) {
+function hamburgerAriaLabel(
+  open: boolean,
+  cartItemCount: number,
+  labels: HamburgerProps["labels"],
+): string {
+  if (open) return labels.closeMenu;
+  if (cartItemCount <= 0) return labels.openMenu;
+  const suffix =
+    cartItemCount === 1
+      ? labels.cartBadgeSuffixOne
+      : labels.cartBadgeSuffix;
+  return `${labels.openMenu}, ${cartItemCount} ${suffix}`;
+}
+
+function HamburgerButton({
+  open,
+  onToggle,
+  cartItemCount,
+  labels,
+}: Readonly<HamburgerProps>) {
   return (
     <button
       type="button"
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#D9C9BA]/50 bg-[#F7F8F3]/50 outline-offset-2 backdrop-blur-sm transition hover:bg-[#F7F8F3]/70 focus-visible:outline-2 focus-visible:outline-[#8C6F65] md:hidden"
+      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#D9C9BA]/50 bg-[#F7F8F3]/50 outline-offset-2 backdrop-blur-sm transition active:bg-[#F7F8F3]/70 [@media(hover:hover)]:hover:bg-[#F7F8F3]/70 focus-visible:outline-2 focus-visible:outline-[#8C6F65] md:hidden"
       aria-expanded={open}
       aria-controls="site-nav-drawer"
-      aria-label={open ? "Fechar menu" : "Abrir menu"}
+      aria-label={hamburgerAriaLabel(open, cartItemCount, labels)}
       onClick={onToggle}
     >
       <span className="flex w-4 flex-col items-center justify-center gap-[4px]">
@@ -48,6 +75,14 @@ function HamburgerButton({ open, onToggle }: Readonly<HamburgerProps>) {
           transition={{ duration: 0.22 }}
         />
       </span>
+      {!open && cartItemCount > 0 ? (
+        <span
+          className={`pointer-events-none absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-[#C94C4C] px-1 text-[10px] font-bold leading-none text-white shadow-sm ${brandClasses.heading}`}
+          aria-hidden
+        >
+          {cartItemCount > 99 ? "99+" : cartItemCount}
+        </span>
+      ) : null}
     </button>
   );
 }
@@ -57,18 +92,20 @@ function navLinkClass(active: boolean) {
   if (active) {
     return `${base} bg-[#8C6F65] font-medium text-[#F7F8F3] shadow-sm`;
   }
-  return `${base} font-semibold text-[#735E53]/80 hover:bg-[#D9C9BA]/30 hover:text-[#735E53]`;
+  return `${base} font-semibold text-[#735E53]/80 active:bg-[#D9C9BA]/25 [@media(hover:hover)]:hover:bg-[#D9C9BA]/30 [@media(hover:hover)]:hover:text-[#735E53]`;
 }
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { primaryNav } = useLocale();
+  const { primaryNav, copy } = useLocale();
+  const { itemCount } = useCart();
+  const { mobileMenu } = copy.header;
 
   return (
     <>
       <header className={brandClasses.glassHeader}>
-        <div className="mx-auto grid h-14 max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 md:px-6">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 md:grid md:grid-cols-[1fr_auto_1fr] md:px-6">
           <Link
             href="/"
             className="flex min-w-0 items-center gap-2.5 rounded-lg outline-offset-4 focus-visible:outline-2 focus-visible:outline-[#8C6F65]"
@@ -113,12 +150,21 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-2">
-            <LanguageToggle />
-            <CartHeaderIcon />
-            <WhatsAppIconLink message={HEADER_WHATSAPP_MESSAGE} />
+            <div className="hidden items-center gap-2 md:flex">
+              <LanguageToggle />
+              <CartHeaderIcon />
+              <WhatsAppIconLink message={HEADER_WHATSAPP_MESSAGE} />
+            </div>
             <HamburgerButton
               open={menuOpen}
               onToggle={() => setMenuOpen((v) => !v)}
+              cartItemCount={itemCount}
+              labels={{
+                openMenu: mobileMenu.openMenu,
+                closeMenu: mobileMenu.closeMenu,
+                cartBadgeSuffix: mobileMenu.cartBadgeSuffix,
+                cartBadgeSuffixOne: mobileMenu.cartBadgeSuffixOne,
+              }}
             />
           </div>
         </div>

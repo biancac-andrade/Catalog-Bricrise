@@ -61,13 +61,20 @@ function persist(lines: CartLine[]) {
 }
 
 export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
-  const [lines, setLines] = useState<CartLine[]>(() =>
-    typeof window === "undefined" ? [] : readStoredLines(),
-  );
+  const [lines, setLines] = useState<CartLine[]>([]);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    // Hidrata do localStorage após o mount para o HTML do servidor bater com o 1º render do cliente.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- bootstrap intencional pós-hidratação
+    setLines(readStoredLines());
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
     persist(lines);
-  }, [lines]);
+  }, [lines, hydrated]);
 
   const addLine = useCallback((payload: AddPayload) => {
     const qty = clampQty(payload.quantity ?? 1);

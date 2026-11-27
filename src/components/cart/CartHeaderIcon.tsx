@@ -31,14 +31,22 @@ function CartGlyph({ muted }: Readonly<{ muted?: boolean }>) {
 const baseClass =
   "relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D9C9BA]/60 bg-[#F7F8F3]/80 sm:h-10 sm:w-10";
 
-export default function CartHeaderIcon() {
+type Props = {
+  className?: string;
+  onNavigate?: () => void;
+};
+
+export default function CartHeaderIcon({
+  className = "",
+  onNavigate,
+}: Readonly<Props>) {
   const { isEmpty, itemCount } = useCart();
   const { copy } = useLocale();
 
   if (isEmpty) {
     return (
       <span
-        className={`${baseClass} cursor-not-allowed opacity-45`}
+        className={`${baseClass} cursor-not-allowed opacity-45 ${className}`}
         aria-disabled="true"
         title={copy.cart.headerDisabledTitle}
       >
@@ -51,7 +59,8 @@ export default function CartHeaderIcon() {
   return (
     <Link
       href="/carrinho"
-      className={`${baseClass} transition hover:border-[#8C6F65] hover:bg-[#F7F8F3] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8C6F65]`}
+      onClick={() => onNavigate?.()}
+      className={`${baseClass} transition [@media(hover:hover)]:hover:border-[#8C6F65] [@media(hover:hover)]:hover:bg-[#F7F8F3] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8C6F65] ${className}`}
       aria-label={`${copy.cart.headerLinkLabel} (${itemCount})`}
     >
       <CartGlyph />

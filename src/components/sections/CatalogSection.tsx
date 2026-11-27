@@ -151,7 +151,7 @@ export default function CatalogSection({
             {filterCopy.emptyResults}
           </p>
         ) : (
-          <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {visible.map((p, index) => (
               <li key={p._id} className="relative z-20">
                 <ProductCard

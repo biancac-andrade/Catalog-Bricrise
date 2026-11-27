@@ -16,7 +16,7 @@ export default function ViewportShell({ children }: Readonly<Props>) {
 
   return (
     <ScrollContainerContext.Provider value={mainRef}>
-      <div className="flex h-screen max-h-screen flex-col justify-between overflow-hidden bg-[#F7F8F3]">
+      <div className="flex h-screen max-h-screen flex-col justify-between overflow-x-hidden bg-[#F7F8F3]">
         <div className="relative z-40 shrink-0">
           <Header />
         </div>

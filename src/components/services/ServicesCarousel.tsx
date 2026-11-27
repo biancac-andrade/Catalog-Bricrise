@@ -197,27 +197,7 @@ export default function ServicesCarousel() {
             : "Reprodução automática ativa"}
       </span>
 
-      <div className="relative sm:mx-2">
-        <motion.button
-          type="button"
-          onClick={prevSlide}
-          whileTap={reduceMotion ? undefined : { scale: 0.94 }}
-          aria-label={locale === "en-US" ? "Previous slide" : "Slide anterior"}
-          className="absolute left-0 top-[52%] z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#D9C9BA]/60 bg-[#F7F8F3]/92 text-[#735E53] shadow-sm backdrop-blur-sm transition hover:border-[#8C6F65]/50 hover:bg-white sm:-left-3 sm:h-11 sm:w-11"
-        >
-          <ChevronLeft />
-        </motion.button>
-
-        <motion.button
-          type="button"
-          onClick={nextSlide}
-          whileTap={reduceMotion ? undefined : { scale: 0.94 }}
-          aria-label={locale === "en-US" ? "Next slide" : "Próximo slide"}
-          className="absolute right-0 top-[52%] z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#D9C9BA]/60 bg-[#F7F8F3]/92 text-[#735E53] shadow-sm backdrop-blur-sm transition hover:border-[#8C6F65]/50 hover:bg-white sm:-right-3 sm:h-11 sm:w-11"
-        >
-          <ChevronRight />
-        </motion.button>
-
+      <div className="relative">
         <div className="relative overflow-hidden rounded-[1.75rem] border border-[#D9C9BA]/35 bg-[#F7F8F3]/48 px-3 pb-6 pt-5 shadow-[0_10px_36px_-20px_rgba(115,94,83,0.22)] backdrop-blur-[8px] sm:px-6 sm:pb-8 sm:pt-6">
           <span
             aria-hidden
@@ -230,7 +210,7 @@ export default function ServicesCarousel() {
 
           <div className="relative z-10 mx-2 sm:mx-4">
             <div
-              className="mb-7 flex flex-wrap justify-center gap-x-6 gap-y-2 border-b border-[#D9C9BA]/40 pb-3 sm:gap-x-10"
+              className="mb-7 grid grid-cols-3 gap-1 border-b border-[#D9C9BA]/40 pb-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-10 sm:gap-y-2"
               role="tablist"
               aria-label={carouselLabel}
             >
@@ -244,17 +224,17 @@ export default function ServicesCarousel() {
                     aria-selected={active}
                     aria-controls={`service-panel-${slide.id}`}
                     onClick={() => goToSlide(slideIndex)}
-                    className={`relative shrink-0 pb-1.5 text-center text-sm font-bold transition-colors sm:text-base ${brandClasses.heading} ${
+                    className={`relative min-w-0 px-0.5 pb-2 pt-0.5 text-center text-[0.68rem] font-bold leading-snug transition-colors sm:shrink-0 sm:px-0 sm:pb-1.5 sm:text-sm sm:text-base ${brandClasses.heading} ${
                       active
                         ? "!text-[#735E53]"
-                        : "!text-[#735E53]/45 hover:!text-[#8C6F65]"
+                        : "!text-[#735E53]/45 active:!text-[#8C6F65]/80 [@media(hover:hover)]:hover:!text-[#8C6F65]"
                     }`}
                   >
-                    {slide.tag}
+                    <span className="block hyphens-auto">{slide.tag}</span>
                     {active ? (
                       <motion.span
                         layoutId="services-tab-underline"
-                        className="absolute -bottom-[13px] left-0 right-0 h-0.5 rounded-full bg-[#8C6F65]"
+                        className="absolute bottom-0 left-0.5 right-0.5 h-0.5 rounded-full bg-[#8C6F65] sm:-bottom-[13px] sm:left-0 sm:right-0"
                         transition={{
                           type: "spring",
                           stiffness: 420,
@@ -272,7 +252,7 @@ export default function ServicesCarousel() {
               role="tabpanel"
               id={`service-panel-${current.id}`}
               aria-label={current.title || current.tag}
-              className="relative mx-auto min-h-[280px] max-w-2xl px-4 text-center sm:px-6"
+              className="relative mx-auto min-h-[280px] max-w-2xl px-1 text-center sm:px-4"
             >
         <FloatingSticker
           emoji={stickers[0]!}
@@ -384,28 +364,65 @@ export default function ServicesCarousel() {
           </motion.div>
         </AnimatePresence>
             </motion.div>
-
-            <div className="mt-6 flex items-center justify-center gap-2">
-              {slides.map((slide, dotIdx) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  onClick={() => goToSlide(dotIdx)}
-                  aria-label={
-                    locale === "en-US"
-                      ? `Go to slide ${dotIdx + 1}`
-                      : `Ir para o slide ${dotIdx + 1}`
-                  }
-                  aria-current={index === dotIdx}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === dotIdx
-                      ? "w-8 bg-[#8C6F65]"
-                      : "w-1.5 bg-[#D9C9BA] hover:bg-[#8C6F65]/50"
-                  }`}
-                />
-              ))}
-            </div>
           </div>
+        </div>
+
+        <h3 className="sr-only">
+          {locale === "en-US" ? "Carousel navigation" : "Navegação do carrossel"}
+        </h3>
+        <div className="mx-auto mt-5 flex w-full max-w-md items-center justify-between gap-4 px-1 sm:max-w-lg sm:gap-6 sm:px-2">
+          <motion.button
+            type="button"
+            onClick={prevSlide}
+            whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+            aria-label={locale === "en-US" ? "Previous slide" : "Slide anterior"}
+            className={`flex h-12 min-w-[3rem] shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-[#D9C9BA]/70 bg-[#FAFAF8] px-3 text-[#735E53] shadow-[0_4px_14px_-8px_rgba(115,94,83,0.35)] transition sm:h-11 sm:min-w-[3.25rem] sm:rounded-full sm:px-0 ${brandClasses.heading} [@media(hover:hover)]:hover:border-[#8C6F65]/55 [@media(hover:hover)]:hover:bg-white`}
+          >
+            <ChevronLeft />
+            <span className="hidden text-xs font-semibold sm:inline">
+              {locale === "en-US" ? "Prev" : "Ant."}
+            </span>
+          </motion.button>
+
+          <div
+            className="flex min-w-0 flex-1 items-center justify-center gap-2.5"
+            role="group"
+            aria-label={
+              locale === "en-US" ? "Slide indicators" : "Indicadores de slide"
+            }
+          >
+            {slides.map((slide, dotIdx) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => goToSlide(dotIdx)}
+                aria-label={
+                  locale === "en-US"
+                    ? `Go to slide ${dotIdx + 1}`
+                    : `Ir para o slide ${dotIdx + 1}`
+                }
+                aria-current={index === dotIdx}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === dotIdx
+                    ? "w-9 bg-[#8C6F65]"
+                    : "w-2 bg-[#D9C9BA] [@media(hover:hover)]:hover:bg-[#8C6F65]/50"
+                }`}
+              />
+            ))}
+          </div>
+
+          <motion.button
+            type="button"
+            onClick={nextSlide}
+            whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+            aria-label={locale === "en-US" ? "Next slide" : "Próximo slide"}
+            className={`flex h-12 min-w-[3rem] shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-[#D9C9BA]/70 bg-[#FAFAF8] px-3 text-[#735E53] shadow-[0_4px_14px_-8px_rgba(115,94,83,0.35)] transition sm:h-11 sm:min-w-[3.25rem] sm:rounded-full sm:px-0 ${brandClasses.heading} [@media(hover:hover)]:hover:border-[#8C6F65]/55 [@media(hover:hover)]:hover:bg-white`}
+          >
+            <span className="hidden text-xs font-semibold sm:inline">
+              {locale === "en-US" ? "Next" : "Próx."}
+            </span>
+            <ChevronRight />
+          </motion.button>
         </div>
       </div>
     </div>
