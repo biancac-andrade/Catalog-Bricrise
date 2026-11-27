@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useId } from "react";
 
 import {
-  NEEDLE_TRANSFORM,
+  NEEDLE_EYE,
+  NEEDLE_ROTATE_DEG,
   WANDERING_YARN_PATH_D,
   YARN_TIP_ORIGIN,
   YARN_VIEWBOX_HEIGHT,
@@ -18,17 +19,20 @@ type Props = {
 
 export default function WanderingYarnScroll({ className = "" }: Readonly<Props>) {
   const filterId = useId().replace(/:/g, "");
-  const { pathDraw, yarnRotate, yarnScale } = useYarnProgress();
+  const { pathDraw, yarnRotate, yarnScale, yarnDriftX, yarnDriftY } =
+    useYarnProgress();
 
   return (
     <div
       aria-hidden
-      className={`pointer-events-none fixed inset-0 z-10 h-full w-full overflow-hidden transform-gpu will-change-transform ${className}`}
+      className={`pointer-events-none fixed inset-0 z-[35] h-full w-full overflow-hidden transform-gpu will-change-transform ${className}`}
     >
       <motion.div
         style={{
           rotate: yarnRotate,
           scale: yarnScale,
+          x: yarnDriftX,
+          y: yarnDriftY,
           left: `${(YARN_TIP_ORIGIN.x / YARN_VIEWBOX_WIDTH) * 100}%`,
           top: `calc(${(YARN_TIP_ORIGIN.y / YARN_VIEWBOX_HEIGHT) * 100}% - 2.75rem)`,
         }}
@@ -106,6 +110,26 @@ export default function WanderingYarnScroll({ className = "" }: Readonly<Props>)
           strokeOpacity={0.4}
         />
 
+        <g
+          transform={`translate(${NEEDLE_EYE.x} ${NEEDLE_EYE.y}) rotate(${NEEDLE_ROTATE_DEG}) translate(-12 -20)`}
+        >
+          <path
+            d="M 15 0 L 15 142 L 12 168 L 9 142 L 9 0 C 9 -12, 15 -12, 15 0 Z"
+            fill="#D9C9BA"
+            stroke="#735E53"
+            strokeWidth={1.5}
+          />
+          <ellipse
+            cx="12"
+            cy="20"
+            rx="2.6"
+            ry="9"
+            fill="#F2F2F0"
+            stroke="#735E53"
+            strokeWidth={1.4}
+          />
+        </g>
+
         <motion.path
           d={WANDERING_YARN_PATH_D}
           stroke="#D9621E"
@@ -116,26 +140,6 @@ export default function WanderingYarnScroll({ className = "" }: Readonly<Props>)
           filter={`url(#${filterId})`}
           style={{ pathLength: pathDraw }}
         />
-
-        <g
-          transform={`translate(${NEEDLE_TRANSFORM.x} ${NEEDLE_TRANSFORM.y}) rotate(${NEEDLE_TRANSFORM.rotate})`}
-        >
-          <path
-            d="M 15 0 L 15 130 L 12 155 L 9 130 L 9 0 C 9 -12, 15 -12, 15 0 Z"
-            fill="#D9C9BA"
-            stroke="#735E53"
-            strokeWidth={1.5}
-          />
-          <ellipse
-            cx="12"
-            cy="20"
-            rx="2.2"
-            ry="8"
-            fill="#F7F8F3"
-            stroke="#735E53"
-            strokeWidth={1.2}
-          />
-        </g>
       </svg>
     </div>
   );

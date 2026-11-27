@@ -16,8 +16,10 @@ import { useScrollContainer } from "@/context/ScrollContainerContext";
 
 const AUTOPLAY_DURATION_S = 2.8;
 const SCROLL_SLOP_PX = 80;
-const YARN_ROTATION_DEG = 1080;
-const YARN_SCALE_DELTA = 0.15;
+const YARN_ROTATION_DEG = 1320;
+const YARN_SCALE_DELTA = 0.18;
+const YARN_DRIFT_X_PX = 8;
+const YARN_DRIFT_Y_PX = 5;
 
 export function useYarnProgress() {
   const reduceMotion = useReducedMotion();
@@ -102,6 +104,12 @@ export function useYarnProgress() {
   const yarnScale = useTransform(output, (value) =>
     reduceMotion ? 1 : 1 - value * YARN_SCALE_DELTA,
   );
+  const yarnDriftX = useTransform(output, (value) =>
+    reduceMotion ? 0 : Math.sin(value * Math.PI * 7.5) * YARN_DRIFT_X_PX,
+  );
+  const yarnDriftY = useTransform(output, (value) =>
+    reduceMotion ? 0 : Math.cos(value * Math.PI * 6.5) * YARN_DRIFT_Y_PX,
+  );
 
-  return { pathDraw, yarnRotate, yarnScale };
+  return { pathDraw, yarnRotate, yarnScale, yarnDriftX, yarnDriftY };
 }

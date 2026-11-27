@@ -20,7 +20,6 @@ export default function ViewportShell({ children }: Readonly<Props>) {
         <div className="relative z-40 shrink-0">
           <Header />
         </div>
-        <WanderingYarnScroll />
         <main
           ref={mainRef}
           id="app-main-scroll"
@@ -31,6 +30,7 @@ export default function ViewportShell({ children }: Readonly<Props>) {
           </div>
         </main>
         <Footer />
+        <WanderingYarnScroll className="z-[35]" />
       </div>
     </ScrollContainerContext.Provider>
   );
