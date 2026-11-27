@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import CartHeaderIcon from "@/components/cart/CartHeaderIcon";
 import LanguageToggle from "@/components/layout/LanguageToggle";
 import MobileMenuDrawer from "@/components/layout/MobileMenuDrawer";
 import WhatsAppIconLink from "@/components/ui/WhatsAppIconLink";
@@ -113,6 +114,7 @@ export default function Header() {
 
           <div className="flex items-center justify-end gap-2">
             <LanguageToggle />
+            <CartHeaderIcon />
             <WhatsAppIconLink message={HEADER_WHATSAPP_MESSAGE} />
             <HamburgerButton
               open={menuOpen}

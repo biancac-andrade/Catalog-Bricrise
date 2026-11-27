@@ -1,6 +1,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { CartProvider } from "@/context/CartContext";
 import { LocaleProvider } from "@/context/LocaleContext";
 
 import Header from "./Header";
@@ -8,7 +9,9 @@ import Header from "./Header";
 function renderHeader() {
   return render(
     <LocaleProvider>
-      <Header />
+      <CartProvider>
+        <Header />
+      </CartProvider>
     </LocaleProvider>,
   );
 }
@@ -29,6 +32,17 @@ describe("Header", () => {
     expect(
       screen.getByRole("button", { name: /Abrir menu/i }),
     ).toBeInTheDocument();
+  });
+
+  it("mostra carrinho desabilitado quando vazio", () => {
+    renderHeader();
+    expect(screen.getByTitle(/Carrinho vazio/i)).toHaveAttribute(
+      "aria-disabled",
+      "true",
+    );
+    expect(
+      screen.queryByRole("link", { name: /Ver carrinho/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("lista rotas principais", () => {
