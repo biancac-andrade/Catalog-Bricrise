@@ -370,18 +370,15 @@ export default function ServicesCarousel() {
         <h3 className="sr-only">
           {locale === "en-US" ? "Carousel navigation" : "Navegação do carrossel"}
         </h3>
-        <div className="mx-auto mt-5 flex w-full max-w-md items-center justify-between gap-4 px-1 sm:max-w-lg sm:gap-6 sm:px-2">
+        <div className="mx-auto mt-5 flex w-full max-w-md items-center justify-between gap-4 px-1 sm:max-w-xl sm:gap-8 sm:px-2">
           <motion.button
             type="button"
             onClick={prevSlide}
             whileTap={reduceMotion ? undefined : { scale: 0.96 }}
             aria-label={locale === "en-US" ? "Previous slide" : "Slide anterior"}
-            className={`flex h-12 min-w-[3rem] shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-[#D9C9BA]/70 bg-[#FAFAF8] px-3 text-[#735E53] shadow-[0_4px_14px_-8px_rgba(115,94,83,0.35)] transition sm:h-11 sm:min-w-[3.25rem] sm:rounded-full sm:px-0 ${brandClasses.heading} [@media(hover:hover)]:hover:border-[#8C6F65]/55 [@media(hover:hover)]:hover:bg-white`}
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D9C9BA]/70 bg-[#FAFAF8] text-[#735E53] shadow-[0_4px_14px_-8px_rgba(115,94,83,0.35)] transition ${brandClasses.heading} [@media(hover:hover)]:hover:border-[#8C6F65]/55 [@media(hover:hover)]:hover:bg-white`}
           >
             <ChevronLeft />
-            <span className="hidden text-xs font-semibold sm:inline">
-              {locale === "en-US" ? "Prev" : "Ant."}
-            </span>
           </motion.button>
 
           <div
@@ -416,11 +413,8 @@ export default function ServicesCarousel() {
             onClick={nextSlide}
             whileTap={reduceMotion ? undefined : { scale: 0.96 }}
             aria-label={locale === "en-US" ? "Next slide" : "Próximo slide"}
-            className={`flex h-12 min-w-[3rem] shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-[#D9C9BA]/70 bg-[#FAFAF8] px-3 text-[#735E53] shadow-[0_4px_14px_-8px_rgba(115,94,83,0.35)] transition sm:h-11 sm:min-w-[3.25rem] sm:rounded-full sm:px-0 ${brandClasses.heading} [@media(hover:hover)]:hover:border-[#8C6F65]/55 [@media(hover:hover)]:hover:bg-white`}
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D9C9BA]/70 bg-[#FAFAF8] text-[#735E53] shadow-[0_4px_14px_-8px_rgba(115,94,83,0.35)] transition ${brandClasses.heading} [@media(hover:hover)]:hover:border-[#8C6F65]/55 [@media(hover:hover)]:hover:bg-white`}
           >
-            <span className="hidden text-xs font-semibold sm:inline">
-              {locale === "en-US" ? "Next" : "Próx."}
-            </span>
             <ChevronRight />
           </motion.button>
         </div>
