@@ -12,8 +12,43 @@ export const ptBR = {
     },
   },
   footer: {
-    tagline: "Feito com carinho no ateliê.",
     brandName: "Bricrisê",
+  },
+  home: {
+    hero: {
+      kicker: "Ateliê Bricrisê",
+      title: "Onde o nó vira laço",
+      subtitle:
+        "Têxtil personalizado com seda e macramê, papelaria afetiva para fãs — peças à mão, referências suas e pedido direto no WhatsApp.",
+      ctaCatalog: "Ver catálogo",
+      ctaAbout: "Conhecer a marca",
+    },
+    fronts: {
+      title: "Dois ateliês, uma mesma delicadeza",
+      subtitle:
+        "Catálogo, ideia sua ou referências: a gente adapta, desenrola e cuida do acabamento em cada linha.",
+      servicesCta: "Serviços e dicas de encomenda",
+      cards: [
+        {
+          num: "I",
+          eyebrow: "Ateliê têxtil",
+          title: "Pulseiras, seda & macramê",
+          description:
+            "Pulseiras, cordões e colares com fios de seda, miçangas e nós artesanais. Modelo do catálogo com ajustes ou peça nova com suas referências.",
+          href: "/catalogo",
+          cta: "Explorar o catálogo",
+        },
+        {
+          num: "II",
+          eyebrow: "Papelaria afetiva",
+          title: "Photocards, polaroids & mimos",
+          description:
+            "K-Pop, doramas, memes ou memórias em colecionáveis de alta qualidade — photocards, adesivos, impressões para quadros e fotos nos tamanhos que você precisa.",
+          href: "/encomendas",
+          cta: "Valores e formatos",
+        },
+      ],
+    },
   },
   about: {
     header: {
@@ -35,24 +70,51 @@ export const ptBR = {
         "Busque por nome, filtre por linha e encomende com mensagem já personalizada.",
     },
   },
+  cart: {
+    headerDisabledTitle: "Carrinho vazio — adicione itens no catálogo",
+    headerLinkLabel: "Ver carrinho",
+    page: {
+      kicker: "Lista",
+      title: "Sua seleção",
+      subtitle: "Revise quantidades e envie o orçamento pelo WhatsApp.",
+      emptyTitle: "Nada por aqui ainda",
+      emptyBody:
+        "No catálogo, escolha a quantidade e toque em adicionar ao carrinho.",
+      emptyCta: "Ir ao catálogo",
+      unitPrice: "un.",
+      lineTotal: "Subtotal",
+      grandTotal: "Total estimado",
+      remove: "Remover",
+      clear: "Limpar lista",
+      sendQuote: "Enviar orçamento no WhatsApp",
+      itemSingular: "item",
+      itemPlural: "itens",
+    },
+    product: {
+      addToCart: "Adicionar",
+      added: "Adicionado",
+      decreaseQty: "Diminuir quantidade",
+      increaseQty: "Aumentar quantidade",
+    },
+  },
   services: {
     header: {
       kicker: "Serviços",
       title: "O que criamos no ateliê",
       subtitle:
-        "Artesanato têxtil e papelaria personalizada com matérias-primas selecionadas e acabamento manual.",
+        "Personalização têxtil, papelaria afetiva e dicas para sua encomenda fluir — do catálogo ao WhatsApp.",
     },
     slides: [
       {
         id: "linhas-acessorios",
         tag: "Ateliê têxtil",
-        badge: "Cordões 1mm & Seda",
-        title: "Linhas, Pulseiras & Colares",
+        badge: "",
+        title: "",
         description:
-          "Na Bricrisê, a gente acredita que cada acessório conta uma história. Além dos nossos modelos fixos, você pode personalizar a sua peça do jeitinho que imaginou.",
-        itemsTitle: "Como personalizar:",
+          "Na Bricrisê, a gente acredita que cada acessório conta uma história. Viu algo no catálogo? A gente adapta. Tem ideia própria? Manda referência e a gente desenrola.",
+        itemsTitle: "",
         items: [
-          "Escolha o modelo da peça (pulseira, cordão ou colar).",
+          "Defina a peça (pulseira, cordão ou colar): use o catálogo como base ou envie referências.",
           "Consulte a cartela de cores de fios de seda disponíveis.",
           "Escolha suas miçangas, pingentes ou letras favoritas.",
         ],
@@ -61,35 +123,30 @@ export const ptBR = {
       {
         id: "photocards",
         tag: "Papelaria afetiva",
-        badge: "Laminação especial",
-        title: "PhotoCards",
+        badge: "",
+        title: "",
         description:
-          "Transforme fotos do seu idol favorito de K-Pop, casais de dorama, memes ou memórias inesquecíveis em peças colecionáveis de alta qualidade.",
-        itemsTitle: "Formatos e acabamentos disponíveis:",
-        items: [
-          "Simples (sem plastificação)",
-          "Premium (com plastificação para durar muito!)",
-          "Holográfico (com aquele brilho incrível!)",
-          "Estilo Polaroid (Tradicional e Mini)",
-          "Fotos avulsas (3x4 para chaveiro, 10x15 e 20x30)",
-        ],
+          "Transforme fotos do seu idol de K-Pop, casais de dorama, memes ou memórias em peças colecionáveis de alta qualidade. Criamos photocards, polaroids, impressões para quadros, adesivos e fotos nos tamanhos que você precisa.",
+        itemsTitle: "",
+        items: [],
         highlight:
-          "Você escolhe as fotos e a gente cuida do acabamento com carinho.",
+          "Fã de qualquer idade, qualquer ideia — manda referência no WhatsApp e a gente desenrola. Valores, formatos e acabamentos na página Encomendas.",
       },
       {
         id: "dicas-envio",
-        tag: "Dicas de produção",
-        badge: "Qualidade garantida",
-        title: "Dicas & Regras de Envio",
+        tag: "Dicas",
+        badge: "",
+        title: "",
         description:
-          "Para garantir que sua encomenda chegue com nitidez máxima e cores vivas, siga as nossas regrinhas práticas:",
-        itemsTitle: "Recomendações importantes:",
+          "Para sua encomenda desenrolar lisinho, mande referências (quanto mais, melhor), as cores que você curte e uma explicação caprichada do que imagina — assim a gente entende sua ideia e desenvolve junto.",
+        itemsTitle: "Na dúvida na hora de enviar a foto?",
         items: [
-          "Qualidade original: Dê preferência para imagens salvas do Pinterest ou X (Twitter). Evite prints.",
-          'Envio no WhatsApp: Mande o arquivo como "Documento" para preservar 100% da resolução.',
-          "Enquadramento: Fotos verticais (9:16) com rostos centralizados longe das linhas de corte.",
+          "Qualidade original: prefira imagens salvas do Pinterest ou X (Twitter). Evite print de tela.",
+          'WhatsApp: envie o arquivo como "Documento" para preservar 100% da resolução.',
+          "Enquadramento: formato vertical (9:16), rostos centralizados e longe das linhas de corte.",
         ],
-        highlight: "Cuidado artesanal do arquivo digital à peça final.",
+        highlight:
+          "Do arquivo digital à peça na sua mão — cuidado artesanal em cada passo.",
       },
     ],
   },

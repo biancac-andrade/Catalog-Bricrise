@@ -12,8 +12,43 @@ export const enUS = {
     },
   },
   footer: {
-    tagline: "Made with care in our studio.",
     brandName: "Bricrisê",
+  },
+  home: {
+    hero: {
+      kicker: "Bricrisê studio",
+      title: "Where the knot becomes a bow",
+      subtitle:
+        "Custom textiles in silk and macramé, heartfelt stationery for fans — handmade pieces, your references, and orders on WhatsApp.",
+      ctaCatalog: "Browse catalog",
+      ctaAbout: "Our story",
+    },
+    fronts: {
+      title: "Two studios, same gentle care",
+      subtitle:
+        "Catalog picks, your ideas, or references — we adapt, shape the details, and finish every piece by hand.",
+      servicesCta: "Services & ordering tips",
+      cards: [
+        {
+          num: "I",
+          eyebrow: "Textile studio",
+          title: "Bracelets, silk & macramé",
+          description:
+            "Bracelets, cords, and necklaces with silk thread, beads, and artisan knots. Start from the catalog or send references for something new.",
+          href: "/catalogo",
+          cta: "Explore the catalog",
+        },
+        {
+          num: "II",
+          eyebrow: "Heartfelt stationery",
+          title: "Photocards, Polaroids & keepsakes",
+          description:
+            "K-Pop, dramas, memes, or memories as high-quality collectibles — photocards, stickers, frame prints, and custom photo sizes.",
+          href: "/encomendas",
+          cta: "Pricing & formats",
+        },
+      ],
+    },
   },
   about: {
     header: {
@@ -34,60 +69,83 @@ export const enUS = {
       subtitle: "Search by name, filter by line, and order with a pre-filled message.",
     },
   },
+  cart: {
+    headerDisabledTitle: "Cart empty — add items from the catalog",
+    headerLinkLabel: "View cart",
+    page: {
+      kicker: "List",
+      title: "Your selection",
+      subtitle: "Review quantities and send the quote via WhatsApp.",
+      emptyTitle: "Nothing here yet",
+      emptyBody:
+        "In the catalog, pick a quantity and tap add to cart.",
+      emptyCta: "Go to catalog",
+      unitPrice: "ea.",
+      lineTotal: "Subtotal",
+      grandTotal: "Estimated total",
+      remove: "Remove",
+      clear: "Clear list",
+      sendQuote: "Send quote on WhatsApp",
+      itemSingular: "item",
+      itemPlural: "items",
+    },
+    product: {
+      addToCart: "Add",
+      added: "Added",
+      decreaseQty: "Decrease quantity",
+      increaseQty: "Increase quantity",
+    },
+  },
   services: {
     header: {
       kicker: "Services",
       title: "What we make in the studio",
       subtitle:
-        "Textile craft and personalized stationery with selected materials and manual finishing.",
+        "Custom textiles, heartfelt stationery, and tips for a smooth order — from catalog to WhatsApp.",
     },
     slides: [
       {
         id: "linhas-acessorios",
         tag: "Textile studio",
-        badge: "1mm cord & silk",
-        title: "Threads, Bracelets & Necklaces",
+        badge: "",
+        title: "",
         description:
-          "At Bricrisê we believe every accessory tells a story. Beyond our ready-made designs, you can customize your piece exactly as you imagined.",
-        itemsTitle: "How to personalize:",
+          "At Bricrisê we believe every accessory tells a story. See something in the catalog? We'll adapt it. Have your own idea? Send references — we'll work it out together.",
+        itemsTitle: "",
         items: [
-          "Pick the piece (bracelet, cord, or necklace).",
-          "Browse our silk thread color chart.",
-          "Choose your beads, charms, or letters.",
+          "Define your piece (bracelet, cord, or necklace): start from the catalog or send references.",
+          "Browse our available silk thread color chart.",
+          "Choose your favorite beads, charms, or letters.",
         ],
         highlight: "Done! We craft a piece that’s uniquely yours.",
       },
       {
         id: "photocards",
         tag: "Heartfelt stationery",
-        badge: "Special lamination",
-        title: "PhotoCards",
+        badge: "",
+        title: "",
         description:
-          "Turn K-Pop idol photos, drama couples, memes, or unforgettable memories into high-quality collectible prints.",
-        itemsTitle: "Formats and finishes:",
-        items: [
-          "Simple (no lamination)",
-          "Premium (laminated to last)",
-          "Holographic (that stunning shine!)",
-          "Polaroid style (traditional & mini)",
-          "Loose prints (3x4 keychain, 10x15 and 20x30)",
-        ],
-        highlight: "You choose the photos — we handle finishing with care.",
+          "Turn K-Pop idol photos, drama couples, memes, or cherished memories into high-quality collectibles. We make photocards, Polaroids, prints for frames, stickers, and custom photo sizes.",
+        itemsTitle: "",
+        items: [],
+        highlight:
+          "Any age, any fandom — send references on WhatsApp and we'll make it happen. Pricing, formats, and finishes on the Orders page.",
       },
       {
         id: "dicas-envio",
-        tag: "Production tips",
-        badge: "Quality assured",
-        title: "Tips & shipping rules",
+        tag: "Tips",
+        badge: "",
+        title: "",
         description:
-          "Follow these practical guidelines so your order arrives with maximum sharpness and vibrant color:",
-        itemsTitle: "Important recommendations:",
+          "So your order moves smoothly, send references (the more the better), your color picks, and a clear note of what you have in mind — we'll shape the idea with you.",
+        itemsTitle: "Not sure how to send the photo?",
         items: [
-          "Original quality: Prefer images saved from Pinterest or X (Twitter). Avoid screenshots.",
-          'WhatsApp upload: Send the file as “Document” to keep full resolution.',
-          "Framing: Vertical (9:16) photos with faces centered, away from trim lines.",
+          "Original quality: prefer images saved from Pinterest or X (Twitter). Skip screenshots.",
+          'WhatsApp: send the file as "Document" to keep full resolution.',
+          "Framing: vertical (9:16), faces centered and away from trim lines.",
         ],
-        highlight: "Handmade care from digital file to final piece.",
+        highlight:
+          "From digital file to the piece in your hands — handmade care at every step.",
       },
     ],
   },
