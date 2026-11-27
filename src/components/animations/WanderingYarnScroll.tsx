@@ -25,7 +25,7 @@ export default function WanderingYarnScroll({ className = "" }: Readonly<Props>)
   return (
     <div
       aria-hidden
-      className={`pointer-events-none fixed inset-0 z-[35] h-full w-full overflow-hidden transform-gpu will-change-transform ${className}`}
+      className={`pointer-events-none fixed inset-0 z-10 h-full w-full overflow-hidden transform-gpu will-change-transform ${className}`}
     >
       <motion.div
         style={{

@@ -12,7 +12,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-20 shrink-0 border-t border-[#D9C9BA] bg-[#F2F2F0]/95">
+    <footer className="relative z-30 shrink-0 border-t border-[#D9C9BA] bg-[#F2F2F0]">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <p
           className={`text-xs text-[#735E53]/85 sm:text-sm ${brandClasses.body}`}
