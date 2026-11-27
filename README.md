@@ -19,18 +19,29 @@ Site do catálogo da **Bricrisê** (pulseiras e peças em macramê). Lista produ
 
 ## 2. Modelo de conteúdo
 
-Em **Content model → + Create content type**, cria **dois** tipos com os **API identifiers** exatos abaixo.
+Em **Content model → + Create content type**, usa **três** tipos com os **API identifiers** exatos abaixo (ordem sugerida: `group` → `theme` → `product`).
 
-### 2.1 `theme` — Tema
+### 2.1 `group` — Grupo (Ateliê / Papelaria)
+
+| Field ID | Tipo | Notas |
+|----------|------|-------|
+| `title` | Short text | Marca como **Entry title**; ex.: `Ateliê Criativa` |
+| `slug` | Short text | Aparência **Slug**; ex.: `atelie` |
+| `key` | Short text | **`atelie`** ou **`papelaria`** (chave usada no site) |
+
+Cria **duas** entradas publicadas: Ateliê (`key: atelie`) e Papelaria (`key: papelaria`).
+
+### 2.2 `theme` — Tema (subcategoria / linha)
 
 | Field ID | Tipo | Notas |
 |----------|------|-------|
 | `title` | Short text | Marca como **Entry title** |
 | `slug` | Short text | Aparência **Slug**; ex.: `copa` |
-| `groupKey` | Short text | ex.: `pulseiras` |
-| `groupTitle` | Short text | ex.: `Pulseiras` (aparece no menu do site) |
+| `group` | **Reference** | Aceita só o content type **`group`** |
+| `groupKey` | Short text | (opcional legado) ex.: `pulseiras` |
+| `groupTitle` | Short text | (opcional legado) ex.: `Pulseiras` |
 
-### 2.2 `product` — Produto
+### 2.3 `product` — Produto
 
 | Field ID | Tipo | Notas |
 |----------|------|-------|
@@ -41,7 +52,7 @@ Em **Content model → + Create content type**, cria **dois** tipos com os **API
 | `theme` | **Reference** | Aceita só o content type `theme` |
 | `available` | **Boolean** | Desmarcado = esgotado no site |
 
-> Cria primeiro os **Temas**, depois os **Produtos** (o campo Reference precisa do tema já existir).
+> Ordem: **Grupos** → **Temas** (com referência ao grupo) → **Produtos** (referência ao tema).
 
 ---
 
@@ -54,18 +65,26 @@ Em **Content model → + Create content type**, cria **dois** tipos com os **API
 
 ---
 
-## 4. Criar entradas de Tema
+## 4. Criar entradas de Grupo e Tema
+
+**Content → Add entry → Grupo** (duas entradas):
+
+| Título | Slug | key |
+|--------|------|-----|
+| Ateliê Criativa | `atelie` | `atelie` |
+| Papelaria Criativa | `papelaria` | `papelaria` |
 
 **Content → Add entry → Tema**, preenche:
 
-| Campo | Exemplo Copa | Exemplo Variadas |
-|-------|-------------|-----------------|
-| Titulo | `Copa` | `Variadas` |
-| Slug | `copa` | `variadas` |
-| Chave do grupo | `pulseiras` | `pulseiras` |
-| Titulo do Grupo | `Pulseiras` | `Pulseiras` |
+| Campo | Exemplo Copa | Exemplo KPOP |
+|-------|-------------|--------------|
+| Titulo | `Copa` | `KPOP` |
+| Slug | `copa` | `kpop` |
+| **Grupo (Reference)** | Ateliê Criativa | Papelaria Criativa |
+| Chave do grupo (opcional) | `pulseiras` | `photocards` |
+| Titulo do Grupo (opcional) | `Pulseiras` | `Photocards` |
 
-Clica **Publish** em cada tema.
+Clica **Publish** em cada tema. Temas **sem** referência a grupo continuam visíveis só em **Todos** no site.
 
 ---
 
@@ -147,6 +166,8 @@ A página revalida automaticamente a cada **2 minutos** — alterações publica
 
 ## 10. Estrutura do projeto
 
+> **Nota — estrutura v1 obsoleta:** a tabela abaixo descreve o layout **single-page** inicial (`app/` na raiz). A aplicação atual é **v2** em [`src/app/`](./src/app/) — ver [Guia v2](#guia-de-instalação-scripts-e-padrões-de-código-v2) e [estudo de arquitetura](./docs/estudo-desenvolvimento-arquitetura.md).
+
 | Caminho | Função |
 |---------|--------|
 | `app/layout.tsx` | Entrada Next: estilos globais + reexport de metadata e layout |
@@ -168,3 +189,99 @@ A página revalida automaticamente a cada **2 minutos** — alterações publica
 
 - [Next.js](https://nextjs.org/docs)
 - [Contentful](https://www.contentful.com/developers/docs/)
+
+---
+
+## Registro de atualização e changelog
+
+Repositório: [biancac-andrade/Catalog-Bricrise](https://github.com/biancac-andrade/Catalog-Bricrise)
+
+| Versão | Data | Objetivo | Status |
+|--------|------|----------|--------|
+| **v1.0** | 2024–2025 | Catálogo single-page, integração Contentful, estrutura inicial documentada nas seções 1–10 deste README | Entregue (legado) |
+| **v2.0** | 2025-11-24 | Boutique editorial **multi-rota** (`/sobre`, `/servicos`, `/catalogo`, `/encomendas`), animação global `WanderingYarnScroll` (scroll + autoplay em viewports curtas), **PT-BR / EN-US** via `src/content/locales/`, layout `ViewportShell` 100vh, documentação modular em `/docs` | Entregue |
+| **v2.1** | 2025-11-26 | Copy/carrossel de **Serviços** (3 abas), home com **`copy.home`** e painéis blur, **carrinho** `/carrinho`, filtros grupo/tema, encomendas editoriais, footer só copyright; testes com **100%** nos módulos UI v2.1 (`npm run test:coverage`) | Em curso |
+
+As seções **1 a 10** acima permanecem como referência histórica (Contentful, deploy, estrutura v1). A implementação atual vive em **`src/app`** e componentes em **`src/components`** (ver [estudo de arquitetura](./docs/estudo-desenvolvimento-arquitetura.md)).
+
+---
+
+## IA no ciclo de vida do projeto (AI-Driven Development)
+
+O desenvolvimento v2 foi conduzido com **assistentes de IA no Cursor**, sob regras explícitas de integridade de dados e code review estrito.
+
+- **Produto e copy:** briefing editorial, carrossel de serviços, página Sobre e footer bilíngue gerados e refinados em `src/content/locales/`.
+- **Arquitetura:** migração para rotas dedicadas, shell viewport, contexto de locale e scroll container.
+- **Qualidade:** TypeScript `strict`, ESLint React 19, testes Vitest; diretrizes em [`docs/rules.md`](./docs/rules.md).
+- **Documentação:** auditoria e criação de especificações em [`/docs`](./docs/README.md).
+
+Detalhes do fluxo: [`docs/ai-engineering-workflow.md`](./docs/ai-engineering-workflow.md).
+
+---
+
+## Mapa da documentação técnica (`/docs`)
+
+| Documento | Descrição |
+|-----------|-----------|
+| [`docs/README.md`](./docs/README.md) | Índice da pasta |
+| [`docs/briefing-produto.md`](./docs/briefing-produto.md) | Briefing de produto e jornada de conversão |
+| [`docs/design-system-tokens.md`](./docs/design-system-tokens.md) | Tokens de cor, tipografia e logos |
+| [`docs/estudo-desenvolvimento-arquitetura.md`](./docs/estudo-desenvolvimento-arquitetura.md) | Arquitetura Next.js, animação do fio, i18n |
+| [`docs/ai-engineering-workflow.md`](./docs/ai-engineering-workflow.md) | Engenharia assistida por IA |
+| [`docs/rules.md`](./docs/rules.md) | Padrões de code review |
+
+Resumos legados (não canônicos): `src/docs/briefing.md`, `src/docs/design-tokens.md`.
+
+---
+
+## Guia de instalação, scripts e padrões de código (v2)
+
+### Pré-requisitos
+
+- Node.js 20+
+- npm (padrão do repo) ou pnpm/yarn equivalentes
+
+### Setup
+
+```bash
+git clone https://github.com/biancac-andrade/Catalog-Bricrise.git
+cd Catalog-Bricrise
+npm install
+cp .env.example .env
+```
+
+Com **pnpm**: `pnpm install` · com **yarn**: `yarn install`.
+
+Configure Contentful conforme as seções **1–7** deste README, ou use apenas o seed local.
+
+### Scripts
+
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Desenvolvimento → [http://localhost:3000](http://localhost:3000) |
+| `npm run build` | Build de produção |
+| `npm run start` | Serve o build |
+| `npm run lint` | ESLint |
+| `npm run test` | Vitest (run once) |
+| `npm run test:coverage` | Vitest + cobertura 100% nos módulos v2.1 (`vitest.config.ts`) |
+| `npm run test:watch` | Vitest em modo watch |
+
+### Estrutura v2 (referência rápida)
+
+| Caminho | Função |
+|---------|--------|
+| `src/app/` | Rotas App Router, `layout.tsx`, ISR |
+| `src/components/` | UI (layout, sections, catalog, services) |
+| `src/content/locales/` | Copy PT-BR e EN-US |
+| `src/context/` | `LocaleProvider`, scroll container |
+| `src/hooks/useYarnProgress.ts` | Progresso do fio (scroll + autoplay) |
+| `lib/contentful/` | Cliente e `fetchCatalog` |
+| `data/catalog.seed.ts` | Fallback sem CMS |
+| `public/brand/` | Logos e brand kit |
+
+### Contribuição
+
+1. Respeitar contratos de catálogo e `lib/utils/whatsapp.ts` salvo tarefa explícita.
+2. Copy novo somente em `src/content/locales/`.
+3. Rodar `npm run lint` e `npm run test` antes de abrir PR.
+4. Consultar [`docs/rules.md`](./docs/rules.md) para padrões TypeScript, imports e a11y.

@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F8F3;
+  --foreground: #735E53;
+
+  --bicrise-sand: #D9C9BA;
+  --bicrise-clay: #BFA393;
+  --bicrise-dust: #8C6F65;
+  --bicrise-white: #F7F8F3;
+  --bicrise-surface: #F2F2F0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-bicrise-sand: var(--bicrise-sand);
+  --color-bicrise-clay: var(--bicrise-clay);
+  --color-bicrise-dust: var(--bicrise-dust);
+  --color-bicrise-white: var(--bicrise-white);
+  --color-bicrise-brown: var(--foreground);
+  --color-bicrise-surface: var(--bicrise-surface);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, button, a[role="tab"] {
+  font-family: var(--font-glacial), system-ui, sans-serif;
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.yarn-readable h1,
+.yarn-readable h2,
+.yarn-readable h3,
+.yarn-readable p {
+  text-shadow:
+    0 0 12px rgba(247, 248, 243, 0.85),
+    0 1px 0 rgba(247, 248, 243, 0.9);
+}
+
+@keyframes cart-whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 4px 14px -4px rgba(37, 211, 102, 0.55),
+      0 0 0 0 rgba(37, 211, 102, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 6px 20px -6px rgba(37, 211, 102, 0.65),
+      0 0 0 10px rgba(37, 211, 102, 0);
+  }
+}
+
+.cart-whatsapp-cta {
+  animation: cart-whatsapp-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-whatsapp-cta {
+    animation: none;
+  }
+}
+
+@keyframes order-sim-border {
+  0%,
+  100% {
+    border-color: rgba(217, 201, 186, 0.45);
+  }
+  50% {
+    border-color: rgba(140, 111, 101, 0.55);
+  }
+}
+
+.order-sim-idle {
+  animation: order-sim-border 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .order-sim-idle {
+    animation: none;
+  }
+}
+
+@keyframes order-sim-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.order-sim-bounce {
+  animation: order-sim-bounce 2.2s ease-in-out infinite;
+}
+
+@keyframes order-sim-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.order-sim-enter {
+  animation: order-sim-enter 0.35s ease-out;
+}
+
+@keyframes order-sim-accent-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.order-sim-accent {
+  transform-origin: left center;
+  animation: order-sim-accent-in 0.45s ease-out;
+}
+
+@keyframes order-total-pop {
+  from {
+    opacity: 0.65;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.order-total-pop {
+  animation: order-total-pop 0.32s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .order-sim-bounce,
+  .order-sim-enter,
+  .order-sim-accent,
+  .order-total-pop {
+    animation: none;
+  }
+}

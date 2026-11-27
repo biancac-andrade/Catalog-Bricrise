@@ -1,0 +1,1 @@
+Documentação canônica: [docs/design-system-tokens.md](../../docs/design-system-tokens.md)

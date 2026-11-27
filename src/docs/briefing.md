@@ -1,0 +1,1 @@
+Documentação canônica: [docs/briefing-produto.md](../../docs/briefing-produto.md)
