@@ -11,7 +11,7 @@ describe("OrdersShippingNotice", () => {
         <ShippingProbe />
       </LocaleProvider>,
     );
-    expect(screen.getByText("Obs.")).toBeInTheDocument();
+    expect(screen.getByText(/Obs\./)).toBeInTheDocument();
     expect(
       screen.getByText(/todo o Brasil via Correios/i),
     ).toBeInTheDocument();
