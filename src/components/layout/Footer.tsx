@@ -17,7 +17,7 @@ export default function Footer() {
         <p
           className={`text-xs text-[#735E53]/85 sm:text-sm ${brandClasses.body}`}
         >
-          © {year} {copy.footer.brandName}. {copy.footer.tagline}
+          © {year} {copy.footer.brandName}.
         </p>
 
         <Link
