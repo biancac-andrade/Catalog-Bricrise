@@ -26,15 +26,22 @@
 
 ```
 src/app/                 Rotas e metadata
-src/components/          UI (layout, sections, catalog, services, orders)
-src/content/locales/     Copy PT-BR e EN-US (dicionários puros)
-src/context/             LocaleProvider, scroll container
-src/design-system/       Tokens e classes de marca
+src/components/          UI (layout, sections, catalog, services, orders, cart)
+src/content/locales/     Copy PT-BR e EN-US (dicionários puros, incl. home)
+src/context/             LocaleProvider, CartProvider, scroll container
+src/types/               Tipos de domínio (ex.: cart)
+lib/cart/                Formatação de mensagem WhatsApp do carrinho
 lib/contentful/          Integração CMS (inalterada contratualmente)
 lib/navigation/          Utilitários de rota ativa
 data/catalog.seed.ts     Fallback local
 public/brand/            Ativos de marca
 ```
+
+### UI editorial v2.1
+
+- **Véu legível:** `backdrop-blur` + fundo semitransparente + gradiente radial em hero, frentes da home e carrossel de serviços (contraste com `WanderingYarnScroll`).
+- **Serviços:** listas numeradas em CSS grid (coluna de índice + texto alinhado à esquerda).
+- **Home:** cards I/II com CTAs para catálogo, encomendas e link central para serviços.
 
 ## `WanderingYarnScroll.tsx` e `useYarnProgress`
 
@@ -59,8 +66,8 @@ Geometria: `src/components/animations/wanderingYarnPath.ts` (viewBox, path `d`, 
 
 ## Testes e qualidade
 
-- `npm run test` — Vitest (51 specs no escopo crítico v2).
-- `npm run test:coverage` — mesmo conjunto com threshold ≥95% nos módulos listados em `vitest.config.ts`.
+- `npm run test` — Vitest (suíte completa: home, serviços, carrinho, catálogo, locale, yarn, metadata).
+- `npm run test:coverage` — threshold **100%** nos módulos v2.1 listados em `vitest.config.ts` (`HeroSection`, `HomeFrontsSection`, `Footer`, `ServicesCarousel`, `OrdersShippingNotice`).
 - `npm run lint` — ESLint (incl. regras React 19).
 - ISR: `revalidate = 120` nas páginas de catálogo.
 

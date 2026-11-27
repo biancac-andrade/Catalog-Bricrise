@@ -19,18 +19,29 @@ Site do catálogo da **Bricrisê** (pulseiras e peças em macramê). Lista produ
 
 ## 2. Modelo de conteúdo
 
-Em **Content model → + Create content type**, cria **dois** tipos com os **API identifiers** exatos abaixo.
+Em **Content model → + Create content type**, usa **três** tipos com os **API identifiers** exatos abaixo (ordem sugerida: `group` → `theme` → `product`).
 
-### 2.1 `theme` — Tema
+### 2.1 `group` — Grupo (Ateliê / Papelaria)
+
+| Field ID | Tipo | Notas |
+|----------|------|-------|
+| `title` | Short text | Marca como **Entry title**; ex.: `Ateliê Criativa` |
+| `slug` | Short text | Aparência **Slug**; ex.: `atelie` |
+| `key` | Short text | **`atelie`** ou **`papelaria`** (chave usada no site) |
+
+Cria **duas** entradas publicadas: Ateliê (`key: atelie`) e Papelaria (`key: papelaria`).
+
+### 2.2 `theme` — Tema (subcategoria / linha)
 
 | Field ID | Tipo | Notas |
 |----------|------|-------|
 | `title` | Short text | Marca como **Entry title** |
 | `slug` | Short text | Aparência **Slug**; ex.: `copa` |
-| `groupKey` | Short text | ex.: `pulseiras` |
-| `groupTitle` | Short text | ex.: `Pulseiras` (aparece no menu do site) |
+| `group` | **Reference** | Aceita só o content type **`group`** |
+| `groupKey` | Short text | (opcional legado) ex.: `pulseiras` |
+| `groupTitle` | Short text | (opcional legado) ex.: `Pulseiras` |
 
-### 2.2 `product` — Produto
+### 2.3 `product` — Produto
 
 | Field ID | Tipo | Notas |
 |----------|------|-------|
@@ -41,7 +52,7 @@ Em **Content model → + Create content type**, cria **dois** tipos com os **API
 | `theme` | **Reference** | Aceita só o content type `theme` |
 | `available` | **Boolean** | Desmarcado = esgotado no site |
 
-> Cria primeiro os **Temas**, depois os **Produtos** (o campo Reference precisa do tema já existir).
+> Ordem: **Grupos** → **Temas** (com referência ao grupo) → **Produtos** (referência ao tema).
 
 ---
 
@@ -54,18 +65,26 @@ Em **Content model → + Create content type**, cria **dois** tipos com os **API
 
 ---
 
-## 4. Criar entradas de Tema
+## 4. Criar entradas de Grupo e Tema
+
+**Content → Add entry → Grupo** (duas entradas):
+
+| Título | Slug | key |
+|--------|------|-----|
+| Ateliê Criativa | `atelie` | `atelie` |
+| Papelaria Criativa | `papelaria` | `papelaria` |
 
 **Content → Add entry → Tema**, preenche:
 
-| Campo | Exemplo Copa | Exemplo Variadas |
-|-------|-------------|-----------------|
-| Titulo | `Copa` | `Variadas` |
-| Slug | `copa` | `variadas` |
-| Chave do grupo | `pulseiras` | `pulseiras` |
-| Titulo do Grupo | `Pulseiras` | `Pulseiras` |
+| Campo | Exemplo Copa | Exemplo KPOP |
+|-------|-------------|--------------|
+| Titulo | `Copa` | `KPOP` |
+| Slug | `copa` | `kpop` |
+| **Grupo (Reference)** | Ateliê Criativa | Papelaria Criativa |
+| Chave do grupo (opcional) | `pulseiras` | `photocards` |
+| Titulo do Grupo (opcional) | `Pulseiras` | `Photocards` |
 
-Clica **Publish** em cada tema.
+Clica **Publish** em cada tema. Temas **sem** referência a grupo continuam visíveis só em **Todos** no site.
 
 ---
 
@@ -181,6 +200,7 @@ Repositório: [biancac-andrade/Catalog-Bricrise](https://github.com/biancac-andr
 |--------|------|----------|--------|
 | **v1.0** | 2024–2025 | Catálogo single-page, integração Contentful, estrutura inicial documentada nas seções 1–10 deste README | Entregue (legado) |
 | **v2.0** | 2025-11-24 | Boutique editorial **multi-rota** (`/sobre`, `/servicos`, `/catalogo`, `/encomendas`), animação global `WanderingYarnScroll` (scroll + autoplay em viewports curtas), **PT-BR / EN-US** via `src/content/locales/`, layout `ViewportShell` 100vh, documentação modular em `/docs` | Entregue |
+| **v2.1** | 2025-11-26 | Copy/carrossel de **Serviços** (3 abas), home com **`copy.home`** e painéis blur, **carrinho** `/carrinho`, filtros grupo/tema, encomendas editoriais, footer só copyright; testes com **100%** nos módulos UI v2.1 (`npm run test:coverage`) | Em curso |
 
 As seções **1 a 10** acima permanecem como referência histórica (Contentful, deploy, estrutura v1). A implementação atual vive em **`src/app`** e componentes em **`src/components`** (ver [estudo de arquitetura](./docs/estudo-desenvolvimento-arquitetura.md)).
 
@@ -243,6 +263,7 @@ Configure Contentful conforme as seções **1–7** deste README, ou use apenas 
 | `npm run start` | Serve o build |
 | `npm run lint` | ESLint |
 | `npm run test` | Vitest (run once) |
+| `npm run test:coverage` | Vitest + cobertura 100% nos módulos v2.1 (`vitest.config.ts`) |
 | `npm run test:watch` | Vitest em modo watch |
 
 ### Estrutura v2 (referência rápida)

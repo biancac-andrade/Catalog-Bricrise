@@ -2,19 +2,23 @@
 
 ## Visão geral
 
-A **Bricrisê** é um ateliê independente que une artesanato têxtil (macramê, pulseiras e acessórios em cordão 1 mm) à **papelaria afetiva** voltada a fandoms — photocards, polaroids e impressões com laminação profissional. O catálogo digital transmite elegância acolhedora, valoriza o trabalho manual e conduz o cliente à **conversão via WhatsApp**, sem checkout proprietário.
+A **Bricrisê** é um ateliê independente que une artesanato têxtil (seda, macramê, pulseiras e colares personalizáveis) à **papelaria afetiva** para fãs — photocards, polaroids, impressões para quadros, adesivos e fotos nos tamanhos combinados. O catálogo digital transmite elegância acolhedora, valoriza o trabalho manual e conduz o cliente à **conversão via WhatsApp** (carrinho com lista + orçamento, sem checkout proprietário).
 
 O produto digital é uma **boutique editorial multi-rota**: páginas dedicadas com narrativa institucional, serviços, tabela de referência e catálogo filtrável, mantendo a camada de dados (Contentful + seed) intacta para evolução incremental.
 
 ## Pilares de oferta
 
-### Ateliê Macramê (cordões 1 mm e fios de seda)
+### Ateliê têxtil (seda, cordão 1 mm e macramê)
 
-Pulseiras, colares e peças personalizáveis: escolha de modelo, paleta de cores, miçangas, letras e pingentes. Produção sob medida com acabamento manual.
+Pulseiras, cordões e colares: modelo do catálogo com ajustes ou referências próprias; cartela de cores de seda; miçangas, letras e pingentes. Produção sob medida com acabamento manual.
 
-### Papelaria afetiva / Photocards
+### Papelaria afetiva
 
-Photocards para K-Pop, doramas e memórias pessoais; formatos simples, premium laminado, holográfico, estilo Polaroid e fotos avulsas (3×4, 10×15, 20×30). O cliente envia arquivos em alta resolução; o ateliê cuida da impressão e do acabamento.
+K-Pop, doramas, memes ou memórias em colecionáveis; photocards, polaroids, impressões para quadros, adesivos e tamanhos avulsos. Valores e acabamentos na página **Encomendas**; arquivos e briefing via WhatsApp.
+
+### Dicas de encomenda
+
+Referências abundantes, cores e descrição clara da ideia; envio de fotos como **Documento** no WhatsApp; enquadramento 9:16 quando aplicável.
 
 ## Jornada de conversão
 
@@ -25,10 +29,11 @@ flowchart LR
   C --> D[WhatsApp com mensagem contextual]
 ```
 
-1. **Descoberta** — Home, Sobre e Serviços (carrossel editorial) apresentam a marca e as linhas.
-2. **Exploração** — Catálogo com busca, filtros (macramê / papelaria) e cards de produto.
-3. **Referência de preços** — Encomendas com matriz interativa e aviso de envio (Correios, retirada, apps).
-4. **Fechamento** — Ícone e CTAs de WhatsApp com mensagem pré-preenchida; catálogo inclui nome/ID do produto quando aplicável.
+1. **Descoberta** — Home (hero + duas frentes com véu sobre o fio), Sobre e Serviços (carrossel de 3 abas).
+2. **Exploração** — Catálogo com busca, filtros grupo/tema e `ProductCard` com stepper + carrinho.
+3. **Lista** — `/carrinho`: revisão, limpar lista, total estimado, WhatsApp.
+4. **Referência de preços** — Encomendas com matriz interativa, simulador e aviso de envio (`*** Obs.`).
+5. **Fechamento** — WhatsApp com mensagem contextual (produto, carrinho ou encomendas).
 
 ## Público e tom
 
@@ -38,7 +43,8 @@ Fãs de K-Pop e doramas, clientes que buscam presentes personalizados e comprado
 
 | Rota | Propósito |
 |------|-----------|
-| `/` | Hero + frentes do ateliê |
+| `/` | Hero + frentes do ateliê (`copy.home`) |
+| `/carrinho` | Lista de orçamento antes do WhatsApp |
 | `/sobre` | História da marca e identidade visual |
 | `/servicos` | Carrossel de linhas (têxtil, photocards, dicas de envio) |
 | `/catalogo` | Produtos (Contentful ou seed) |
